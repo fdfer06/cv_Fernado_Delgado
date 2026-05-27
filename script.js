@@ -1,7 +1,7 @@
 const siteHeader = document.querySelector(".site-header");
 
 const revealTargets = document.querySelectorAll(
-  ".section, .panel, .feature-copy, .video-showcase, .host-panel, .flow-node"
+  ".section, .panel, .feature-copy, .video-showcase, .real-host-panel, .flow-node"
 );
 
 const observer = new IntersectionObserver(

@@ -114,47 +114,121 @@
           <h2>Panel de control para dirigir la partida</h2>
         </div>
         <div class="host-layout">
-          <article class="host-panel">
-            <div class="host-panel-top">
-              <span></span>
-              <span></span>
-              <span></span>
-              <strong>Skyrun Host Panel</strong>
-            </div>
-            <div class="host-dashboard">
-              <div class="host-sidebar">
-                <span class="active">Partida</span>
-                <span>Mapas</span>
-                <span>Jugadores</span>
-                <span>Eventos</span>
+          <article class="real-host-panel" aria-label="Panel real de control de Skyrun">
+            <div class="gafa-grid">
+              <div class="gafa-card">
+                <span class="status-dot online"></span>
+                <span class="status-dot alert"></span>
+                <span class="gafa-avatar"></span>
+                <strong>GAFA 1</strong>
+                <p>POINT: <b>0</b></p>
+                <p>FPS <b>0</b></p>
               </div>
-              <div class="host-main">
-                <div class="host-status">
-                  <div>
-                    <strong>8</strong>
-                    <span>Quest conectadas</span>
+              <div class="gafa-card">
+                <span class="status-dot online"></span>
+                <span class="status-dot alert"></span>
+                <span class="gafa-avatar"></span>
+                <strong>GAFA 2</strong>
+                <p>POINT: <b>0</b></p>
+                <p>FPS <b>0</b></p>
+              </div>
+              <div class="gafa-card">
+                <span class="status-dot online"></span>
+                <span class="status-dot alert"></span>
+                <span class="gafa-avatar"></span>
+                <strong>GAFA 3</strong>
+                <p>POINT: <b>0</b></p>
+                <p>FPS <b>0</b></p>
+              </div>
+              <div class="gafa-card">
+                <span class="status-dot online"></span>
+                <span class="status-dot alert"></span>
+                <span class="gafa-avatar"></span>
+                <strong>GAFA 4</strong>
+                <p>POINT: <b>0</b></p>
+                <p>FPS <b>0</b></p>
+              </div>
+              <div class="gafa-card">
+                <span class="status-dot online"></span>
+                <span class="status-dot alert"></span>
+                <span class="gafa-avatar"></span>
+                <strong>GAFA 5</strong>
+                <p>POINT <b>0</b></p>
+                <p>FPS <b>0</b></p>
+              </div>
+              <div class="gafa-card">
+                <span class="status-dot online"></span>
+                <span class="status-dot alert"></span>
+                <span class="gafa-avatar"></span>
+                <strong>GAFA 6</strong>
+                <p>POINT: <b>0</b></p>
+                <p>FPS <b>0</b></p>
+              </div>
+              <div class="gafa-card">
+                <span class="status-dot online"></span>
+                <span class="status-dot alert"></span>
+                <span class="gafa-avatar"></span>
+                <strong>GAFA 7</strong>
+                <p>POINT: <b>0</b></p>
+                <p>FPS <b>0</b></p>
+              </div>
+              <div class="gafa-card">
+                <span class="status-dot online"></span>
+                <span class="status-dot alert"></span>
+                <span class="gafa-avatar"></span>
+                <strong>GAFA 8</strong>
+                <p>POINT: <b>0</b></p>
+                <p>FPS <b>0</b></p>
+              </div>
+              <div class="gafa-card">
+                <span class="status-dot online"></span>
+                <span class="status-dot alert"></span>
+                <span class="gafa-avatar"></span>
+                <strong>GAFA 9</strong>
+                <p>POINT: <b>0</b></p>
+                <p>FPS <b>0</b></p>
+              </div>
+            </div>
+            <div class="host-control-row">
+              <aside class="host-game-list">
+                <button>SkyRun</button>
+                <button>SkyRun halloween</button>
+              </aside>
+              <div class="host-control-stack">
+                <section class="yellow-control">
+                  <h3>ENEMIGOS</h3>
+                  <div class="control-line">
+                    <span class="fake-select">Cofre</span>
+                    <span class="fake-button">Añadir</span>
                   </div>
-                  <div>
-                    <strong>City</strong>
-                    <span>Mapa activo</span>
+                  <span class="wide-button">Quitar enemigos</span>
+                  <div class="small-controls">
+                    <span class="fake-check"></span>
+                    <span>Automatico</span>
+                    <b>C</b>
+                    <span class="fake-input">40</span>
+                    <b>t</b>
+                    <span class="fake-input">5</span>
                   </div>
-                  <div>
-                    <strong>Live</strong>
-                    <span>Sesión en curso</span>
+                  <p>cantidad : <b>0</b></p>
+                </section>
+                <section class="yellow-control">
+                  <h3>POWER UP</h3>
+                  <div class="control-line">
+                    <span class="fake-select">RedPotion</span>
+                    <span class="fake-button">Añadir</span>
                   </div>
-                </div>
-                <div class="host-map">
-                  <span class="player p1"></span>
-                  <span class="player p2"></span>
-                  <span class="player p3"></span>
-                  <span class="player p4"></span>
-                </div>
-                <div class="host-actions">
-                  <span>Cambiar mapa</span>
-                  <span>Respawn</span>
-                  <span>Power ups</span>
-                  <span>Ranking</span>
-                </div>
+                  <span class="wide-button">Quitar enemigos</span>
+                  <div class="small-controls">
+                    <span class="fake-check"></span>
+                    <span>Automatico</span>
+                    <b>t</b>
+                    <span class="fake-input">5</span>
+                    <b>C</b>
+                    <span class="fake-input">20</span>
+                  </div>
+                  <p>cantidad : <b>0</b></p>
+                </section>
               </div>
             </div>
           </article>
@@ -210,12 +284,6 @@
             <source src="assets/skyrun-demo-web.mp4" type="video/mp4">
             Tu navegador no puede reproducir este vídeo.
           </video>
-          <div class="video-copy">
-            <h3>Gameplay editado para portfolio</h3>
-            <p>
-              Demo breve con audio original silenciado y música de fondo. Resume el proyecto desde una perspectiva técnica: Unity, C#, VR multijugador, Meta Quest, PC host y experiencia en entorno real.
-            </p>
-          </div>
         </div>
       </section>
 
