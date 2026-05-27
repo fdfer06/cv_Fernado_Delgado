@@ -110,6 +110,98 @@
 
       <section class="section">
         <div class="section-heading">
+          <p class="section-kicker">Host / Game Master</p>
+          <h2>Panel de control para dirigir la partida</h2>
+        </div>
+        <div class="host-layout">
+          <article class="host-panel">
+            <div class="host-panel-top">
+              <span></span>
+              <span></span>
+              <span></span>
+              <strong>Skyrun Host Panel</strong>
+            </div>
+            <div class="host-dashboard">
+              <div class="host-sidebar">
+                <span class="active">Partida</span>
+                <span>Mapas</span>
+                <span>Jugadores</span>
+                <span>Eventos</span>
+              </div>
+              <div class="host-main">
+                <div class="host-status">
+                  <div>
+                    <strong>8</strong>
+                    <span>Quest conectadas</span>
+                  </div>
+                  <div>
+                    <strong>City</strong>
+                    <span>Mapa activo</span>
+                  </div>
+                  <div>
+                    <strong>Live</strong>
+                    <span>Sesión en curso</span>
+                  </div>
+                </div>
+                <div class="host-map">
+                  <span class="player p1"></span>
+                  <span class="player p2"></span>
+                  <span class="player p3"></span>
+                  <span class="player p4"></span>
+                </div>
+                <div class="host-actions">
+                  <span>Cambiar mapa</span>
+                  <span>Respawn</span>
+                  <span>Power ups</span>
+                  <span>Ranking</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="panel host-copy">
+            <h3>Qué controla el host</h3>
+            <ul class="detail-list compact-list">
+              <li>Cambio de juego, mapa y estado de partida.</li>
+              <li>Jugadores conectados, color, ID, vida y puntos.</li>
+              <li>Respawn, reinicio, eventos rápidos y power ups.</li>
+              <li>Ranking y actualización del panel durante la sesión.</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-heading">
+          <p class="section-kicker">Arquitectura</p>
+          <h2>Cómo fluye una partida</h2>
+        </div>
+        <div class="system-flow">
+          <article class="flow-node">
+            <span>01</span>
+            <h3>Host inicia partida</h3>
+            <p>Selecciona mapa, modo y condiciones desde el panel Game Master.</p>
+          </article>
+          <article class="flow-node">
+            <span>02</span>
+            <h3>Quest se conectan</h3>
+            <p>Se asigna ID, color, spawn y estado inicial a cada jugador.</p>
+          </article>
+          <article class="flow-node">
+            <span>03</span>
+            <h3>FishNet sincroniza</h3>
+            <p>Jugadores, disparos, vida, puntos, RPCs visuales y conexión.</p>
+          </article>
+          <article class="flow-node">
+            <span>04</span>
+            <h3>Gameplay en VR</h3>
+            <p>Movimiento, armas, daño, curación, muerte, respawn y ranking.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-heading">
           <p class="section-kicker">Demo técnica</p>
           <h2>Skyrun en 60 segundos</h2>
         </div>
