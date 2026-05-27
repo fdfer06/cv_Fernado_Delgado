@@ -3,11 +3,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Fernando Delgado Izquierdo | Desarrollo</title>
-  <meta name="description" content="Perfil de desarrollo de Fernando Delgado Izquierdo: Unity, C#, VR/XR, FishNet y experiencia real en un proyecto multijugador para Meta Quest.">
+  <title>Fernando Delgado Izquierdo | Desarrollo Unity VR</title>
+  <meta name="description" content="Perfil de desarrollo de Fernando Delgado Izquierdo: Unity, C#, VR/XR, FishNet y experiencia real en Skyrun, un proyecto multijugador para Meta Quest.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -29,56 +29,70 @@
     </header>
 
     <main>
-      <section class="page-hero">
-        <p class="eyebrow">Perfil de desarrollo</p>
-        <h1>Unity, VR y experiencias interactivas</h1>
-        <p class="lead">
-          Perfil junior orientado a Unity, C# y VR/XR, con experiencia real en desarrollo y soporte técnico dentro de una actividad inmersiva usada por público.
-        </p>
+      <section class="page-hero dev-hero">
+        <div>
+          <p class="eyebrow">Proyecto destacado</p>
+          <h1>Skyrun: experiencia VR multijugador en Unity</h1>
+          <p class="lead">
+            Proyecto desarrollado para uso real en sala, con Meta Quest como clientes y una mesa de control en PC como host de la sesión.
+          </p>
+        </div>
+        <div class="hero-stats compact-stats" aria-label="Datos técnicos del proyecto">
+          <div>
+            <strong>8</strong>
+            <span>jugadores</span>
+          </div>
+          <div>
+            <strong>FishNet</strong>
+            <span>multijugador</span>
+          </div>
+          <div>
+            <strong>Quest</strong>
+            <span>VR standalone</span>
+          </div>
+        </div>
       </section>
 
       <section class="section">
         <div class="feature-layout">
-          <article class="feature-copy">
-            <h2>Proyecto destacado: Virtual</h2>
+          <article class="feature-copy project-feature">
+            <h2>Qué he construido</h2>
             <p>
-              He desarrollado un proyecto VR multijugador pensado para uso real en empresa, con partidas de hasta 8 jugadores en Meta Quest conectados a una mesa de control que funciona como host en PC.
+              Skyrun conecta varias gafas Meta Quest como clientes con un PC host desde el que se coordina la partida, el estado de los jugadores y el flujo general de la experiencia.
             </p>
-            <div class="tag-row">
+            <div class="tag-row tech-tags">
               <span>Unity</span>
               <span>C#</span>
               <span>FishNet</span>
               <span>VR/XR</span>
-              <span>Multijugador</span>
               <span>Meta Quest</span>
+              <span>PC Host</span>
+              <span>Gameplay</span>
+              <span>Soporte técnico</span>
             </div>
 
             <div class="project-list">
               <article class="project-point">
-                <h3>Estructura del sistema</h3>
-                <p>La experiencia está organizada con varias gafas Meta Quest como clientes y una mesa de control en PC como host central, desde donde se coordina la sesión, el estado de los jugadores y el funcionamiento general de la partida.</p>
+                <h3>Arquitectura cliente-host</h3>
+                <p>Varias gafas Meta Quest funcionan como clientes y una mesa de control en PC actúa como host central para gestionar la sesión, mapas, jugadores y estado de partida.</p>
               </article>
               <article class="project-point">
-                <h3>Multijugador de 8 jugadores</h3>
-                <p>El proyecto está planteado para soportar hasta 8 jugadores al mismo tiempo, sincronizando posición, estado, equipamiento, vida, disparos, puntos y otros elementos necesarios para que la experiencia compartida funcione con coherencia.</p>
+                <h3>Multijugador de hasta 8 jugadores</h3>
+                <p>Sincronización de posición, estado, equipamiento, vida, disparos, puntos y elementos necesarios para que la experiencia compartida sea coherente.</p>
               </article>
               <article class="project-point">
                 <h3>Mecánicas implementadas</h3>
-                <p>He trabajado movimiento, disparo, respawn, audio, cambios de escena, control de mapas, configuración de equipamiento por escenario y distintos comportamientos ligados al flujo de juego.</p>
+                <p>Movimiento, disparo, respawn, audio, cambios de escena, control de mapas, configuración de equipamiento por escenario y lógica de flujo de juego.</p>
               </article>
               <article class="project-point">
                 <h3>Entorno real de uso</h3>
-                <p>No es solo un proyecto de práctica. Esta experiencia está pensada para usarse con público, lo que implica pruebas, correcciones, resolución de incidencias y coordinación entre software, hardware y dinámica de sala.</p>
-              </article>
-              <article class="project-point">
-                <h3>Lo que demuestra</h3>
-                <p>Demuestra base real de integración técnica y capacidad para construir una experiencia VR amplia, multijugador y conectada a una necesidad concreta de empresa.</p>
+                <p>El proyecto implica pruebas con usuarios, resolución de incidencias y coordinación entre software, hardware y dinámica de sala.</p>
               </article>
             </div>
           </article>
 
           <aside class="panel project-side">
-            <h3>Tecnologías y conocimientos</h3>
+            <h3>Stack técnico</h3>
             <ul class="detail-list">
               <li>Unity</li>
               <li>C#</li>
@@ -90,27 +104,7 @@
               <li>Gestión de sesiones con host en PC</li>
               <li>Despliegue para varias Meta Quest</li>
             </ul>
-            <div class="project-brand-note">
-              <img src="assets/virtual-logo.png" alt="Logo del proyecto Virtual">
-              <p>Referencia visual del proyecto, situada dentro del bloque técnico y sin ocupar el protagonismo del CV.</p>
-            </div>
           </aside>
-        </div>
-      </section>
-
-      <section class="section demo-section">
-        <div class="section-heading">
-          <p class="section-kicker">Demo profesional</p>
-          <h2>Vídeo de presentación del proyecto VR</h2>
-        </div>
-        <div class="demo-panel">
-          <div>
-            <h3>Espacio reservado para el montaje final</h3>
-            <p>
-              Aquí irá una demo breve del juego con las mejores partes: mecánicas, multijugador, uso con Meta Quest, mesa de control y resultado en entorno real.
-            </p>
-          </div>
-          <a class="button button-primary" href="contacto.html">Contactar</a>
         </div>
       </section>
 
@@ -123,14 +117,14 @@
           <article class="timeline-item panel">
             <div class="timeline-top">
               <h3>Virtual Cuenca</h3>
-              <span>Actualidad</span>
+              <span>Febrero 2025 - Actualidad</span>
             </div>
             <p>Monitor de realidad virtual y responsable del desarrollo del juego y de la experiencia usada por la empresa, además del apoyo técnico en sala y la resolución de incidencias durante las sesiones.</p>
           </article>
           <article class="timeline-item panel">
             <div class="timeline-top">
               <h3>Iworking</h3>
-              <span>Prácticas</span>
+              <span>Julio 2023 - Agosto 2023</span>
             </div>
             <p>Prácticas de programación con desarrollo de realidad virtual y apoyo en tareas técnicas, que sirvieron como base para seguir creciendo en Unity y experiencias interactivas.</p>
           </article>
