@@ -1,0 +1,426 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fernando Delgado Izquierdo | Formación y Experiencia</title>
+  <meta name="description" content="Línea de tiempo de Fernando Delgado Izquierdo: barras temporales de formación y experiencia que se solapan según sus fechas reales.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .timeline-container {
+      position: relative;
+      width: 100%;
+      overflow-x: auto;
+      margin-top: 20px;
+    }
+
+    .timeline-svg {
+      width: 100%;
+      min-height: 600px;
+      background: linear-gradient(to bottom, transparent 48%, rgba(148, 163, 184, 0.1) 48%, rgba(148, 163, 184, 0.1) 52%, transparent 52%);
+    }
+
+    .timeline-bar {
+      cursor: pointer;
+      transition: filter 200ms ease;
+    }
+
+    .timeline-bar:hover {
+      filter: brightness(1.2);
+    }
+
+    .bar-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      fill: #eef6ff;
+      pointer-events: none;
+    }
+
+    .bar-date {
+      font-size: 0.65rem;
+      fill: #a8b3c7;
+      pointer-events: none;
+    }
+
+    .timeline-popup {
+      position: fixed;
+      background: var(--surface-strong);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 14px 16px;
+      width: 220px;
+      box-shadow: var(--shadow);
+      z-index: 100;
+      display: none;
+      pointer-events: none;
+    }
+
+    .timeline-popup.visible {
+      display: block;
+    }
+
+    .popup-title {
+      font-weight: 700;
+      color: var(--accent-strong);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .popup-text {
+      color: var(--muted);
+      font-size: 0.82rem;
+      line-height: 1.4;
+    }
+  </style>
+</head>
+<body>
+  <div class="page-shell">
+    <header class="site-header">
+      <a class="brand" href="index.html">
+        <span class="brand-mark">FD</span>
+        <span>Fernando Delgado Izquierdo</span>
+      </a>
+      <nav class="main-nav">
+        <a href="index.html">Inicio</a>
+        <a href="desarrollo.html">Desarrollo</a>
+        <a href="administracion.html">Administración</a>
+        <a href="socorrismo.html">Socorrismo y monitor</a>
+        <a class="active" href="trayectoria.html">Formación y Experiencia</a>
+        <a href="contacto.html">Contacto</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="page-hero">
+        <p class="eyebrow">Formación y experiencia</p>
+        <h1>Línea de tiempo temporal</h1>
+        <p class="lead">
+          Cada barra representa un período. Las que se solapan ocurrieron al mismo tiempo.
+          Pasa el cursor sobre las barras para ver el detalle.
+        </p>
+      </section>
+
+      <section class="section">
+        <div class="story-legend">
+          <span><span class="dot formacion"></span> Formación</span>
+          <span><span class="dot"></span> Experiencia</span>
+        </div>
+
+        <div class="timeline-container">
+          <svg class="timeline-svg" id="timeline"></svg>
+        </div>
+
+        <div class="timeline-popup" id="popup">
+          <div class="popup-title" id="popup-title"></div>
+          <div class="popup-text" id="popup-text"></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-heading">
+          <p class="section-kicker">Historial completo</p>
+          <h2>Formación y experiencia por orden</h2>
+        </div>
+        <div id="timeline-cards" class="timeline-cards-grid"></div>
+      </section>
+    </main>
+  </div>
+
+  <style>
+    .timeline-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 18px;
+    }
+
+    .timeline-card {
+      padding: 20px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: var(--surface);
+      backdrop-filter: blur(14px);
+      box-shadow: var(--shadow);
+      transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+    }
+
+    .timeline-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 28px 48px rgba(61, 43, 18, 0.11);
+      border-color: rgba(56, 217, 198, 0.18);
+    }
+
+    .timeline-card.formacion {
+      border-left: 4px solid #9ba7ff;
+    }
+
+    .timeline-card.experiencia {
+      border-left: 4px solid #38d9c6;
+    }
+
+    .timeline-card-badge {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 8px;
+      padding: 4px 10px;
+      border-radius: 4px;
+    }
+
+    .timeline-card.formacion .timeline-card-badge {
+      background: rgba(155, 167, 255, 0.2);
+      color: #c4cbff;
+    }
+
+    .timeline-card.experiencia .timeline-card-badge {
+      background: rgba(56, 217, 198, 0.2);
+      color: #38d9c6;
+    }
+
+    .timeline-card h3 {
+      margin: 0 0 6px;
+      font-size: 1.1rem;
+      color: var(--text);
+    }
+
+    .timeline-card p {
+      margin: 0 0 10px;
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .timeline-card-org {
+      font-size: 0.85rem;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    .timeline-card-date {
+      display: block;
+      margin-top: 12px;
+      font-size: 0.8rem;
+      color: var(--accent);
+      font-weight: 600;
+    }
+  </style>
+
+  <script>
+    const events = [
+      { start: "2023-07", end: "2023-07", type: "formacion", title: "Desarrollo multimedia", org: "Iworking", desc: "Programación en C#, modelado 3D, Unity y realidad virtual" },
+      { start: "2023-07", end: "2023-08", type: "experiencia", title: "Prácticas VR", org: "Iworking", desc: "Apoyo técnico en desarrollo de realidad virtual" },
+      { start: "2024-04", end: "2024-06", type: "experiencia", title: "Prácticas administrativo", org: "MRW", desc: "Atención, oficina, rutas y herramientas digitales" },
+      { start: "2024-06", end: "2024-06", type: "formacion", title: "Técnico Gestión Administrativa", org: "IES Pedro Mercedes", desc: "Titulación reglada en procesos administrativos" },
+      { start: "2024-06", end: "2024-07", type: "experiencia", title: "Prácticas de monitor", org: "Centro Ortega y Gasset", desc: "Supervisión, seguridad y dinamización" },
+      { start: "2024-07", end: "2024-07", type: "formacion", title: "Dinamización tiempo libre", org: "Iworking", desc: "Procesos grupales y organización de actividades" },
+      { start: "2024-09", end: "2026-03", type: "formacion", title: "Administración y Finanzas", org: "IES Pedro Mercedes", desc: "Grado superior en gestión empresarial" },
+      { start: "2024-11", end: "2024-11", type: "formacion", title: "Socorrista acuático", org: "Global Encesap", desc: "Rescate, salvamento y protocolos de seguridad" },
+      { start: "2025-02", end: "2026-06", type: "experiencia", title: "Monitor VR y desarrollador", org: "Virtual Cuenca", desc: "Monitor de VR y desarrollo del juego" },
+      { start: "2025-06", end: "2025-09", type: "experiencia", title: "Socorrista acuático", org: "Clima Cuenca SLU", desc: "Vigilancia, atención y control de material" },
+      { start: "2025-06", end: "2025-12", type: "formacion", title: "Análisis Power BI", org: "Formación", desc: "Análisis de datos y visualización" },
+      { start: "2026-05", end: "2026-06", type: "experiencia", title: "Prácticas administrativas", org: "Obrescam", desc: "Gestión y seguimiento documental" },
+      { start: "2026-06", end: "2026-12", type: "experiencia", title: "Trabajador administrativo", org: "Obrescam", desc: "Administrativo contratado" },
+      { start: "2026-06", end: "2026-12", type: "experiencia", title: "Socorrista acuático", org: "Clima Cuenca SLU", desc: "Socorrista activo" }
+    ];
+
+    function dateToMonths(dateStr) {
+      const [year, month] = dateStr.split("-").map(Number);
+      return year * 12 + month;
+    }
+
+    const minMonth = Math.min(...events.map(e => dateToMonths(e.start)));
+    const maxMonth = Math.max(...events.map(e => dateToMonths(e.end)));
+    const timelineRange = maxMonth - minMonth + 1;
+
+    function positionEvent(event) {
+      const startMonths = dateToMonths(event.start) - minMonth;
+      const endMonths = dateToMonths(event.end) - minMonth;
+      const duration = endMonths - startMonths + 1;
+      return { start: startMonths, duration };
+    }
+
+    function layoutRows(events) {
+      const rows = [];
+      events.forEach(event => {
+        const pos = positionEvent(event);
+        let placed = false;
+
+        for (let row of rows) {
+          let canPlace = true;
+          for (let existing of row) {
+            const ePos = positionEvent(existing);
+            if (!(pos.start + pos.duration <= ePos.start || pos.start >= ePos.start + ePos.duration)) {
+              canPlace = false;
+              break;
+            }
+          }
+          if (canPlace) {
+            row.push(event);
+            placed = true;
+            break;
+          }
+        }
+
+        if (!placed) {
+          rows.push([event]);
+        }
+      });
+      return rows;
+    }
+
+    const rows = layoutRows(events);
+    const svg = document.getElementById("timeline");
+    const barHeight = 40;
+    const barGap = 15;
+    const rowHeight = barHeight + barGap;
+    const padding = 40;
+    const svgWidth = 1200;
+
+    svg.setAttribute("viewBox", `0 0 ${svgWidth} ${rows.length * rowHeight + padding}`);
+
+    let rowIndex = 0;
+    let direction = 1; // 1 = left to right, -1 = right to left
+
+    rows.forEach((row, idx) => {
+      let sortedRow = [...row];
+      if (direction === -1) {
+        sortedRow.reverse();
+      }
+
+      const yBase = padding + idx * rowHeight;
+      const contentWidth = svgWidth - 80;
+
+      sortedRow.forEach((event, barIdx) => {
+        const pos = positionEvent(event);
+        let x, width;
+
+        if (direction === 1) {
+          x = 40 + (pos.start / timelineRange) * contentWidth;
+          width = (pos.duration / timelineRange) * contentWidth;
+        } else {
+          const rightX = 40 + ((pos.start + pos.duration) / timelineRange) * contentWidth;
+          width = (pos.duration / timelineRange) * contentWidth;
+          x = rightX - width;
+        }
+
+        const color = event.type === "formacion" ? "#9ba7ff" : "#38d9c6";
+        const rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+        rect.setAttribute("class", "timeline-bar");
+        rect.setAttribute("x", x);
+        rect.setAttribute("y", yBase);
+        rect.setAttribute("width", Math.max(width, 2));
+        rect.setAttribute("height", barHeight);
+        rect.setAttribute("rx", "6");
+        rect.setAttribute("fill", color);
+        rect.setAttribute("opacity", "0.8");
+
+        rect.addEventListener("mouseenter", (e) => {
+          const popup = document.getElementById("popup");
+          popup.classList.add("visible");
+          document.getElementById("popup-title").textContent = `${event.type === "formacion" ? "FORMACIÓN" : "EXPERIENCIA"} · ${event.org}`;
+          document.getElementById("popup-text").textContent = `${event.title} — ${event.desc}`;
+          popup.style.left = (e.clientX + 10) + "px";
+          popup.style.top = (e.clientY + 10) + "px";
+        });
+
+        rect.addEventListener("mousemove", (e) => {
+          const popup = document.getElementById("popup");
+          popup.style.left = (e.clientX + 10) + "px";
+          popup.style.top = (e.clientY + 10) + "px";
+        });
+
+        rect.addEventListener("mouseleave", () => {
+          document.getElementById("popup").classList.remove("visible");
+        });
+
+        svg.appendChild(rect);
+
+        // Etiqueta
+        if (width > 60) {
+          const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+          text.setAttribute("class", "bar-label");
+          text.setAttribute("x", x + 8);
+          text.setAttribute("y", yBase + 18);
+          text.setAttribute("dominant-baseline", "middle");
+          text.textContent = event.title;
+          svg.appendChild(text);
+        }
+      });
+
+      direction *= -1; // Cambiar dirección para siguiente fila
+    });
+
+    // Línea de tiempo base
+    const timelineLine = document.createElementNS("http://www.w3.org/2000/svg", "line");
+    timelineLine.setAttribute("x1", "40");
+    timelineLine.setAttribute("y1", "24");
+    timelineLine.setAttribute("x2", svgWidth - 40);
+    timelineLine.setAttribute("y2", "24");
+    timelineLine.setAttribute("stroke", "rgba(148, 163, 184, 0.3)");
+    timelineLine.setAttribute("stroke-width", "6");
+    timelineLine.setAttribute("stroke-linecap", "round");
+    svg.appendChild(timelineLine);
+
+    // Fechas en la base
+    const monthLabels = [];
+    for (let i = 0; i <= timelineRange; i += 6) {
+      const month = minMonth + i;
+      const year = Math.floor(month / 12);
+      const monthNum = month % 12 || 12;
+      const x = 40 + (i / timelineRange) * (svgWidth - 80);
+
+      const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+      text.setAttribute("class", "bar-date");
+      text.setAttribute("x", x);
+      text.setAttribute("y", rows.length * rowHeight + padding - 10);
+      text.setAttribute("text-anchor", "middle");
+      text.textContent = `${monthNum}/${year % 100}`;
+      svg.appendChild(text);
+    }
+
+    // Generar tarjetillas ordenadas por fecha (más reciente primero)
+    const sortedEvents = [...events].sort((a, b) => {
+      const aEnd = dateToMonths(a.end);
+      const bEnd = dateToMonths(b.end);
+      return bEnd - aEnd; // Descendente (más reciente primero)
+    });
+
+    const cardsContainer = document.getElementById("timeline-cards");
+    sortedEvents.forEach(event => {
+      const card = document.createElement("div");
+      card.className = `timeline-card ${event.type}`;
+
+      const badge = document.createElement("div");
+      badge.className = "timeline-card-badge";
+      badge.textContent = event.type === "formacion" ? "Formación" : "Experiencia";
+
+      const title = document.createElement("h3");
+      title.textContent = event.title;
+
+      const description = document.createElement("p");
+      description.textContent = event.desc;
+
+      const org = document.createElement("p");
+      org.className = "timeline-card-org";
+      org.textContent = event.org;
+
+      const date = document.createElement("span");
+      date.className = "timeline-card-date";
+      date.textContent = `${event.start} → ${event.end}`;
+
+      card.appendChild(badge);
+      card.appendChild(title);
+      card.appendChild(description);
+      card.appendChild(org);
+      card.appendChild(date);
+
+      cardsContainer.appendChild(card);
+    });
+  </script>
+</body>
+</html>
