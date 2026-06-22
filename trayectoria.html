@@ -10,38 +10,45 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <style>
-    .timeline-container {
+    .timeline-serpent {
       position: relative;
-      width: 100%;
-      overflow-x: auto;
-      margin-top: 20px;
+      padding: 40px 0;
     }
 
     .timeline-svg {
       width: 100%;
-      min-height: 600px;
-      background: linear-gradient(to bottom, transparent 48%, rgba(148, 163, 184, 0.1) 48%, rgba(148, 163, 184, 0.1) 52%, transparent 52%);
+      display: block;
     }
 
-    .timeline-bar {
+    .serpent-bar {
       cursor: pointer;
-      transition: filter 200ms ease;
+      transition: opacity 200ms ease, filter 200ms ease;
+      rx: 6;
+      ry: 6;
     }
 
-    .timeline-bar:hover {
-      filter: brightness(1.2);
+    .serpent-bar:hover {
+      filter: brightness(1.15);
+      opacity: 1;
     }
 
-    .bar-label {
-      font-size: 0.75rem;
+    .bar-text {
+      font-size: 0.8rem;
       font-weight: 600;
-      fill: #eef6ff;
+      fill: white;
       pointer-events: none;
     }
 
-    .bar-date {
-      font-size: 0.65rem;
-      fill: #a8b3c7;
+    .bar-date-label {
+      font-size: 0.7rem;
+      fill: rgba(255, 255, 255, 0.8);
+      pointer-events: none;
+    }
+
+    .connector-line {
+      stroke: rgba(148, 163, 184, 0.2);
+      stroke-width: 2;
+      fill: none;
       pointer-events: none;
     }
 
@@ -62,12 +69,32 @@
       display: block;
     }
 
+    .popup-badge {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 6px;
+      padding: 4px 10px;
+      border-radius: 4px;
+    }
+
+    .popup-badge.formacion {
+      background: rgba(155, 167, 255, 0.2);
+      color: #c4cbff;
+    }
+
+    .popup-badge.experiencia {
+      background: rgba(56, 217, 198, 0.2);
+      color: #38d9c6;
+    }
+
     .popup-title {
       font-weight: 700;
       color: var(--accent-strong);
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      margin-bottom: 6px;
+      font-size: 0.85rem;
+      margin: 6px 0;
     }
 
     .popup-text {
@@ -97,10 +124,10 @@
     <main>
       <section class="page-hero">
         <p class="eyebrow">Formación y experiencia</p>
-        <h1>Línea de tiempo temporal</h1>
+        <h1>Línea de tiempo en serpiente</h1>
         <p class="lead">
-          Cada barra representa un período. Las que se solapan ocurrieron al mismo tiempo.
-          Pasa el cursor sobre las barras para ver el detalle.
+          Una visualización cronológica donde formación y experiencia se entrelazan.
+          Las barras se solapan cuando ocurren simultáneamente, en un patrón que alterna de izquierda a derecha.
         </p>
       </section>
 
@@ -110,11 +137,12 @@
           <span><span class="dot"></span> Experiencia</span>
         </div>
 
-        <div class="timeline-container">
+        <div class="timeline-serpent">
           <svg class="timeline-svg" id="timeline"></svg>
         </div>
 
         <div class="timeline-popup" id="popup">
+          <div class="popup-badge" id="popup-badge"></div>
           <div class="popup-title" id="popup-title"></div>
           <div class="popup-text" id="popup-text"></div>
         </div>
@@ -135,60 +163,6 @@
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 18px;
-    }
-
-    .timeline-card:nth-child(4n+1) { order: calc((((var(--row-index, 0)) * 4 + 0) + 1) * (1 - 2 * (var(--row-index, 0) % 2))); }
-    .timeline-card:nth-child(4n+2) { order: calc((((var(--row-index, 0)) * 4 + 1) + 1) * (1 - 2 * (var(--row-index, 0) % 2))); }
-    .timeline-card:nth-child(4n+3) { order: calc((((var(--row-index, 0)) * 4 + 2) + 1) * (1 - 2 * (var(--row-index, 0) % 2))); }
-    .timeline-card:nth-child(4n+4) { order: calc((((var(--row-index, 0)) * 4 + 3) + 1) * (1 - 2 * (var(--row-index, 0) % 2))); }
-
-    /* Filas pares (0, 2, 4...): izquierda a derecha */
-    .timeline-card:nth-child(4n+1),
-    .timeline-card:nth-child(4n+2),
-    .timeline-card:nth-child(4n+3),
-    .timeline-card:nth-child(4n+4) {
-      transform-origin: center;
-    }
-
-    /* Filas impares (1, 3, 5...): derecha a izquierda - invertir visualmente */
-    .timeline-card:nth-child(8n+5),
-    .timeline-card:nth-child(8n+6),
-    .timeline-card:nth-child(8n+7),
-    .timeline-card:nth-child(8n+8) {
-      transform: scaleX(-1);
-    }
-
-    .timeline-card:nth-child(8n+5) .timeline-card-badge,
-    .timeline-card:nth-child(8n+5) h3,
-    .timeline-card:nth-child(8n+5) p,
-    .timeline-card:nth-child(8n+6) .timeline-card-badge,
-    .timeline-card:nth-child(8n+6) h3,
-    .timeline-card:nth-child(8n+6) p,
-    .timeline-card:nth-child(8n+7) .timeline-card-badge,
-    .timeline-card:nth-child(8n+7) h3,
-    .timeline-card:nth-child(8n+7) p,
-    .timeline-card:nth-child(8n+8) .timeline-card-badge,
-    .timeline-card:nth-child(8n+8) h3,
-    .timeline-card:nth-child(8n+8) p {
-      transform: scaleX(-1);
-    }
-
-    @media (max-width: 1200px) {
-      .timeline-cards-grid {
-        grid-template-columns: repeat(3, 1fr);
-      }
-    }
-
-    @media (max-width: 768px) {
-      .timeline-cards-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    @media (max-width: 480px) {
-      .timeline-cards-grid {
-        grid-template-columns: 1fr;
-      }
     }
 
     .timeline-card {
@@ -262,6 +236,24 @@
       color: var(--accent);
       font-weight: 600;
     }
+
+    @media (max-width: 1200px) {
+      .timeline-cards-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .timeline-cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .timeline-cards-grid {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
 
   <script>
@@ -291,23 +283,23 @@
     const maxMonth = Math.max(...events.map(e => dateToMonths(e.end)));
     const timelineRange = maxMonth - minMonth + 1;
 
-    function positionEvent(event) {
-      const startMonths = dateToMonths(event.start) - minMonth;
-      const endMonths = dateToMonths(event.end) - minMonth;
-      const duration = endMonths - startMonths + 1;
-      return { start: startMonths, duration };
+    function getPosition(event) {
+      const start = dateToMonths(event.start) - minMonth;
+      const end = dateToMonths(event.end) - minMonth;
+      const duration = end - start + 1;
+      return { start, duration };
     }
 
     function layoutRows(events) {
       const rows = [];
       events.forEach(event => {
-        const pos = positionEvent(event);
+        const pos = getPosition(event);
         let placed = false;
 
         for (let row of rows) {
           let canPlace = true;
           for (let existing of row) {
-            const ePos = positionEvent(existing);
+            const ePos = getPosition(existing);
             if (!(pos.start + pos.duration <= ePos.start || pos.start >= ePos.start + ePos.duration)) {
               canPlace = false;
               break;
@@ -329,55 +321,73 @@
 
     const rows = layoutRows(events);
     const svg = document.getElementById("timeline");
-    const barHeight = 40;
-    const barGap = 15;
-    const rowHeight = barHeight + barGap;
-    const padding = 40;
-    const svgWidth = 1200;
+    const barHeight = 45;
+    const rowGap = 80;
+    const padding = 60;
+    const svgWidth = Math.max(1000, window.innerWidth - 100);
 
-    svg.setAttribute("viewBox", `0 0 ${svgWidth} ${rows.length * rowHeight + padding}`);
+    let totalHeight = padding + rows.length * rowGap;
+    svg.setAttribute("viewBox", `0 0 ${svgWidth} ${totalHeight}`);
 
-    let rowIndex = 0;
-    let direction = 1; // 1 = left to right, -1 = right to left
+    // Dibujar línea central (serpiente)
+    let currentY = padding + barHeight / 2;
+    const pathPoints = [{ x: 80, y: currentY }];
 
-    rows.forEach((row, idx) => {
-      let sortedRow = [...row];
-      if (direction === -1) {
-        sortedRow.reverse();
-      }
+    for (let i = 0; i < rows.length - 1; i++) {
+      const direction = i % 2 === 0 ? 1 : -1;
+      const nextX = direction === 1 ? svgWidth - 80 : 80;
+      pathPoints.push({ x: nextX, y: currentY });
+      currentY += rowGap;
+      pathPoints.push({ x: nextX, y: currentY });
+    }
+    pathPoints.push({ x: (rows.length % 2 === 1 ? svgWidth - 80 : 80), y: currentY });
 
-      const yBase = padding + idx * rowHeight;
-      const contentWidth = svgWidth - 80;
+    const pathData = pathPoints.map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.x} ${p.y}`).join(' ');
+    const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+    path.setAttribute("d", pathData);
+    path.setAttribute("class", "connector-line");
+    path.setAttribute("stroke-width", "3");
+    svg.appendChild(path);
 
-      sortedRow.forEach((event, barIdx) => {
-        const pos = positionEvent(event);
+    // Dibujar barras
+    rows.forEach((row, rowIdx) => {
+      const yPos = padding + rowIdx * rowGap;
+      const direction = rowIdx % 2 === 0 ? 1 : -1;
+      const contentWidth = svgWidth - 160;
+
+      row.forEach(event => {
+        const pos = getPosition(event);
         let x, width;
 
         if (direction === 1) {
-          x = 40 + (pos.start / timelineRange) * contentWidth;
+          x = 80 + (pos.start / timelineRange) * contentWidth;
           width = (pos.duration / timelineRange) * contentWidth;
         } else {
-          const rightX = 40 + ((pos.start + pos.duration) / timelineRange) * contentWidth;
+          const rightX = 80 + ((pos.start + pos.duration) / timelineRange) * contentWidth;
           width = (pos.duration / timelineRange) * contentWidth;
           x = rightX - width;
         }
 
+        width = Math.max(width, 30);
+
         const color = event.type === "formacion" ? "#9ba7ff" : "#38d9c6";
         const rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
-        rect.setAttribute("class", "timeline-bar");
+        rect.setAttribute("class", "serpent-bar");
         rect.setAttribute("x", x);
-        rect.setAttribute("y", yBase);
-        rect.setAttribute("width", Math.max(width, 2));
+        rect.setAttribute("y", yPos);
+        rect.setAttribute("width", width);
         rect.setAttribute("height", barHeight);
-        rect.setAttribute("rx", "6");
         rect.setAttribute("fill", color);
-        rect.setAttribute("opacity", "0.8");
+        rect.setAttribute("opacity", "0.85");
 
         rect.addEventListener("mouseenter", (e) => {
           const popup = document.getElementById("popup");
           popup.classList.add("visible");
-          document.getElementById("popup-title").textContent = `${event.type === "formacion" ? "FORMACIÓN" : "EXPERIENCIA"} · ${event.org}`;
-          document.getElementById("popup-text").textContent = `${event.title} — ${event.desc}`;
+          const badge = document.getElementById("popup-badge");
+          badge.textContent = event.type === "formacion" ? "FORMACIÓN" : "EXPERIENCIA";
+          badge.className = `popup-badge ${event.type}`;
+          document.getElementById("popup-title").textContent = `${event.org}`;
+          document.getElementById("popup-text").innerHTML = `<strong>${event.title}</strong><br>${event.desc}`;
           popup.style.left = (e.clientX + 10) + "px";
           popup.style.top = (e.clientY + 10) + "px";
         });
@@ -395,53 +405,24 @@
         svg.appendChild(rect);
 
         // Etiqueta
-        if (width > 60) {
+        if (width > 80) {
           const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
-          text.setAttribute("class", "bar-label");
-          text.setAttribute("x", x + 8);
-          text.setAttribute("y", yBase + 18);
+          text.setAttribute("class", "bar-text");
+          text.setAttribute("x", x + width / 2);
+          text.setAttribute("y", yPos + barHeight / 2 + 2);
+          text.setAttribute("text-anchor", "middle");
           text.setAttribute("dominant-baseline", "middle");
           text.textContent = event.title;
           svg.appendChild(text);
         }
       });
-
-      direction *= -1; // Cambiar dirección para siguiente fila
     });
-
-    // Línea de tiempo base
-    const timelineLine = document.createElementNS("http://www.w3.org/2000/svg", "line");
-    timelineLine.setAttribute("x1", "40");
-    timelineLine.setAttribute("y1", "24");
-    timelineLine.setAttribute("x2", svgWidth - 40);
-    timelineLine.setAttribute("y2", "24");
-    timelineLine.setAttribute("stroke", "rgba(148, 163, 184, 0.3)");
-    timelineLine.setAttribute("stroke-width", "6");
-    timelineLine.setAttribute("stroke-linecap", "round");
-    svg.appendChild(timelineLine);
-
-    // Fechas en la base
-    const monthLabels = [];
-    for (let i = 0; i <= timelineRange; i += 6) {
-      const month = minMonth + i;
-      const year = Math.floor(month / 12);
-      const monthNum = month % 12 || 12;
-      const x = 40 + (i / timelineRange) * (svgWidth - 80);
-
-      const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
-      text.setAttribute("class", "bar-date");
-      text.setAttribute("x", x);
-      text.setAttribute("y", rows.length * rowHeight + padding - 10);
-      text.setAttribute("text-anchor", "middle");
-      text.textContent = `${monthNum}/${year % 100}`;
-      svg.appendChild(text);
-    }
 
     // Generar tarjetillas ordenadas por fecha (más reciente primero)
     const sortedEvents = [...events].sort((a, b) => {
       const aEnd = dateToMonths(a.end);
       const bEnd = dateToMonths(b.end);
-      return bEnd - aEnd; // Descendente (más reciente primero)
+      return bEnd - aEnd;
     });
 
     const cardsContainer = document.getElementById("timeline-cards");
