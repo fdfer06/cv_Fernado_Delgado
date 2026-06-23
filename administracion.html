@@ -17,7 +17,12 @@
         <span class="brand-mark">FD</span>
         <span>Fernando Delgado Izquierdo</span>
       </a>
-      <nav class="main-nav">
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Abrir menú">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <nav class="main-nav" id="main-nav">
         <a href="index.html">Inicio</a>
         <a href="desarrollo.html">Desarrollo</a>
         <a class="active" href="administracion.html">Administración</a>
@@ -45,14 +50,20 @@
           <article class="panel">
             <span style="display: inline-block; font-size: 0.7rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 8px; padding: 4px 10px; border-radius: 4px; background: rgba(155, 167, 255, 0.2); color: #c4cbff;">Formación</span>
             <h3>Técnico en Gestión Administrativa</h3>
-            <p style="font-size: 0.9rem; color: var(--muted); margin: 8px 0;">IES Pedro Mercedes</p>
+            <div class="timeline-org" style="margin: 8px 0;">
+              <img class="org-logo" src="assets/logos/pedro-mercedes.png" alt="Logo de IES Pedro Mercedes">
+              <p style="font-size: 0.9rem; color: var(--muted); margin: 0;">IES Pedro Mercedes</p>
+            </div>
             <p>Base reglada en procesos administrativos, organización documental y funcionamiento de oficina.</p>
             <p style="font-size: 0.9rem; color: var(--accent); font-weight: 600; margin-top: 8px;"><strong>Junio 2024</strong></p>
           </article>
           <article class="panel">
             <span style="display: inline-block; font-size: 0.7rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 8px; padding: 4px 10px; border-radius: 4px; background: rgba(155, 167, 255, 0.2); color: #c4cbff;">Formación</span>
             <h3>Administración y Finanzas</h3>
-            <p style="font-size: 0.9rem; color: var(--muted); margin: 8px 0;">IES Pedro Mercedes</p>
+            <div class="timeline-org" style="margin: 8px 0;">
+              <img class="org-logo" src="assets/logos/pedro-mercedes.png" alt="Logo de IES Pedro Mercedes">
+              <p style="font-size: 0.9rem; color: var(--muted); margin: 0;">IES Pedro Mercedes</p>
+            </div>
             <p>Grado superior orientado a gestión empresarial, operaciones administrativas y funcionamiento interno de empresa.</p>
             <p style="font-size: 0.9rem; color: var(--accent); font-weight: 600; margin-top: 8px;"><strong>Septiembre 2024 - Marzo 2026</strong></p>
           </article>
@@ -84,21 +95,30 @@
         <div class="timeline">
           <article class="timeline-item panel">
             <div class="timeline-top">
-              <h3>MRW</h3>
+              <div class="timeline-org">
+                <img class="org-logo" src="assets/logos/mrw.webp" alt="Logo de MRW">
+                <h3>MRW</h3>
+              </div>
               <span>Abril - Junio 2024</span>
             </div>
             <p>Tareas generales de oficina, gestión de correos, llamadas, rutas y herramientas digitales de la franquicia.</p>
           </article>
           <article class="timeline-item panel">
             <div class="timeline-top">
-              <h3>Obrescam</h3>
+              <div class="timeline-org">
+                <img class="org-logo" src="assets/logos/obrescam.png" alt="Logo de Obrescam">
+                <h3>Obrescam</h3>
+              </div>
               <span>Mayo 2026 - 16 Junio 2026 (prácticas)</span>
             </div>
             <p>Apoyo administrativo en tareas de gestión, organización y seguimiento documental en empresa.</p>
           </article>
           <article class="timeline-item panel">
             <div class="timeline-top">
-              <h3>Obrescam</h3>
+              <div class="timeline-org">
+                <img class="org-logo" src="assets/logos/obrescam.png" alt="Logo de Obrescam">
+                <h3>Obrescam</h3>
+              </div>
               <span>18 Junio 2026 - Actualidad</span>
             </div>
             <p>Tras finalizar las prácticas, contratado como trabajador administrativo: gestión, organización y seguimiento documental.</p>
