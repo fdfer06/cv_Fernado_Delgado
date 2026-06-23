@@ -12,12 +12,23 @@
   <style>
     .timeline-wrapper {
       padding: 60px 40px;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
     }
 
     .timeline-svg {
-      width: 100%;
-      min-height: 500px;
       display: block;
+    }
+
+    .timeline-axis-label {
+      font-size: 13px;
+      fill: var(--muted);
+    }
+
+    @media (max-width: 720px) {
+      .timeline-wrapper {
+        padding: 40px 20px;
+      }
     }
 
     .tooltip {
@@ -199,10 +210,37 @@
     const svg = document.getElementById("timeline");
     const rowHeight = 60;
     const padding = 60;
-    const contentWidth = window.innerWidth > 1024 ? 1000 : window.innerWidth - 80;
+    const contentWidth = 1000;
 
     const totalHeight = padding * 2 + rows.length * rowHeight;
     svg.setAttribute("viewBox", `0 0 ${contentWidth + 80} ${totalHeight}`);
+    svg.setAttribute("width", contentWidth + 80);
+    svg.setAttribute("height", totalHeight);
+
+    // Eje de años para dar contexto temporal, sobre todo en scroll horizontal en móvil
+    const firstAxisYear = Math.ceil((minMonth - 1) / 12);
+    const lastAxisYear = Math.floor((maxMonth - 1) / 12);
+    for (let year = firstAxisYear; year <= lastAxisYear; year++) {
+      const monthPos = year * 12 + 1 - minMonth;
+      const x = 40 + (monthPos / timelineRange) * contentWidth;
+
+      const tick = document.createElementNS("http://www.w3.org/2000/svg", "line");
+      tick.setAttribute("x1", x);
+      tick.setAttribute("y1", padding - 28);
+      tick.setAttribute("x2", x);
+      tick.setAttribute("y2", totalHeight - 10);
+      tick.setAttribute("stroke", "var(--line)");
+      tick.setAttribute("stroke-width", "1");
+      svg.appendChild(tick);
+
+      const label = document.createElementNS("http://www.w3.org/2000/svg", "text");
+      label.setAttribute("x", x);
+      label.setAttribute("y", padding - 36);
+      label.setAttribute("text-anchor", "middle");
+      label.setAttribute("class", "timeline-axis-label");
+      label.textContent = year;
+      svg.appendChild(label);
+    }
 
     let activeRect = null;
 
