@@ -4,104 +4,78 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Fernando Delgado Izquierdo | Formación y Experiencia</title>
-  <meta name="description" content="Línea de tiempo de Fernando Delgado Izquierdo: barras temporales de formación y experiencia que se solapan según sus fechas reales.">
+  <meta name="description" content="Línea de tiempo: formación y experiencia profesional de Fernando Delgado Izquierdo.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <style>
-    .timeline-serpent {
-      position: relative;
-      padding: 60px 40px;
+    .timeline-container {
+      padding: 60px 0;
     }
 
     .timeline-svg {
       width: 100%;
+      min-height: 600px;
       display: block;
-      background: transparent;
     }
 
-    .gantt-bar {
-      cursor: pointer;
-      transition: opacity 200ms ease, filter 200ms ease;
-    }
-
-    .gantt-bar:hover {
-      filter: brightness(1.2);
-      opacity: 1;
-    }
-
-    .bar-marker {
-      stroke-width: 3;
-      fill: none;
-      pointer-events: none;
-    }
-
-    .bar-label {
-      font-size: 0.75rem;
-      font-weight: 600;
-      fill: currentColor;
-      pointer-events: none;
-    }
-
-    .connector-path {
-      stroke: #ff4757;
-      stroke-width: 3;
-      fill: none;
-      pointer-events: none;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-
-    .timeline-popup {
+    .tooltip {
       position: fixed;
       background: var(--surface-strong);
       border: 1px solid var(--line);
-      border-radius: 10px;
-      padding: 14px 16px;
-      width: 220px;
-      box-shadow: var(--shadow);
-      z-index: 100;
+      border-radius: 8px;
+      padding: 12px 16px;
+      font-size: 0.85rem;
+      z-index: 1000;
       display: none;
       pointer-events: none;
+      box-shadow: var(--shadow);
+      max-width: 220px;
     }
 
-    .timeline-popup.visible {
+    .tooltip.visible {
       display: block;
     }
 
-    .popup-badge {
-      display: inline-block;
-      font-size: 0.7rem;
+    .tooltip-badge {
+      font-size: 0.65rem;
       font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 0.04em;
-      margin-bottom: 6px;
-      padding: 4px 10px;
-      border-radius: 4px;
+      margin-bottom: 4px;
+      padding: 3px 8px;
+      border-radius: 3px;
+      display: inline-block;
     }
 
-    .popup-badge.formacion {
+    .tooltip-badge.formacion {
       background: rgba(155, 167, 255, 0.2);
       color: #c4cbff;
     }
 
-    .popup-badge.experiencia {
-      background: rgba(56, 217, 198, 0.2);
-      color: #38d9c6;
+    .tooltip-badge.experiencia {
+      background: rgba(56, 169, 214, 0.2);
+      color: #38a9d6;
     }
 
-    .popup-title {
-      font-weight: 700;
-      color: var(--accent-strong);
-      font-size: 0.85rem;
-      margin: 6px 0;
+    .tooltip-title {
+      font-weight: 600;
+      color: var(--text);
+      margin: 4px 0;
     }
 
-    .popup-text {
+    .tooltip-org {
       color: var(--muted);
-      font-size: 0.82rem;
+      font-size: 0.8rem;
+      margin: 2px 0;
+    }
+
+    .tooltip-desc {
+      color: var(--muted);
+      font-size: 0.8rem;
       line-height: 1.4;
+      margin-top: 4px;
     }
   </style>
 </head>
@@ -132,129 +106,18 @@
       </section>
 
       <section class="section">
-        <div class="story-legend">
-          <span><span class="dot formacion"></span> Formación</span>
-          <span><span class="dot"></span> Experiencia</span>
-        </div>
-
-        <div class="timeline-serpent">
+        <div class="timeline-container">
           <svg class="timeline-svg" id="timeline"></svg>
+          <div class="tooltip" id="tooltip">
+            <div class="tooltip-badge" id="tooltip-badge"></div>
+            <div class="tooltip-title" id="tooltip-title"></div>
+            <div class="tooltip-org" id="tooltip-org"></div>
+            <div class="tooltip-desc" id="tooltip-desc"></div>
+          </div>
         </div>
-
-        <div class="timeline-popup" id="popup">
-          <div class="popup-badge" id="popup-badge"></div>
-          <div class="popup-title" id="popup-title"></div>
-          <div class="popup-text" id="popup-text"></div>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="section-heading">
-          <p class="section-kicker">Historial completo</p>
-          <h2>Formación y experiencia por orden</h2>
-        </div>
-        <div id="timeline-cards" class="timeline-cards-grid"></div>
       </section>
     </main>
   </div>
-
-  <style>
-    .timeline-cards-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 18px;
-    }
-
-    .timeline-card {
-      padding: 20px;
-      border: 1px solid var(--line);
-      border-radius: 10px;
-      background: var(--surface);
-      backdrop-filter: blur(14px);
-      box-shadow: var(--shadow);
-      transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
-    }
-
-    .timeline-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 28px 48px rgba(61, 43, 18, 0.11);
-      border-color: rgba(56, 217, 198, 0.18);
-    }
-
-    .timeline-card.formacion {
-      border-left: 4px solid #9ba7ff;
-    }
-
-    .timeline-card.experiencia {
-      border-left: 4px solid #38d9c6;
-    }
-
-    .timeline-card-badge {
-      display: inline-block;
-      font-size: 0.7rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-      margin-bottom: 8px;
-      padding: 4px 10px;
-      border-radius: 4px;
-    }
-
-    .timeline-card.formacion .timeline-card-badge {
-      background: rgba(155, 167, 255, 0.2);
-      color: #c4cbff;
-    }
-
-    .timeline-card.experiencia .timeline-card-badge {
-      background: rgba(56, 217, 198, 0.2);
-      color: #38d9c6;
-    }
-
-    .timeline-card h3 {
-      margin: 0 0 6px;
-      font-size: 1.1rem;
-      color: var(--text);
-    }
-
-    .timeline-card p {
-      margin: 0 0 10px;
-      color: var(--muted);
-      font-size: 0.95rem;
-      line-height: 1.6;
-    }
-
-    .timeline-card-org {
-      font-size: 0.85rem;
-      color: var(--muted);
-      font-weight: 500;
-    }
-
-    .timeline-card-date {
-      display: block;
-      margin-top: 12px;
-      font-size: 0.8rem;
-      color: var(--accent);
-      font-weight: 600;
-    }
-
-    @media (max-width: 1200px) {
-      .timeline-cards-grid {
-        grid-template-columns: repeat(3, 1fr);
-      }
-    }
-
-    @media (max-width: 768px) {
-      .timeline-cards-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    @media (max-width: 480px) {
-      .timeline-cards-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
 
   <script>
     const events = [
@@ -262,8 +125,8 @@
       { start: "2023-04", end: "2023-07", type: "formacion", title: "Desarrollo videojuegos", org: "Iworking", desc: "Programación en C#, modelado 3D y Unity" },
       { start: "2023-07", end: "2023-08", type: "experiencia", title: "Prácticas VR", org: "Iworking", desc: "Apoyo técnico en desarrollo de realidad virtual" },
       { start: "2024-04", end: "2024-06", type: "experiencia", title: "Prácticas administrativas", org: "MRW", desc: "Atención, oficina, rutas y herramientas digitales" },
-      { start: "2024-06", end: "2024-07", type: "experiencia", title: "Prácticas de monitor", org: "Centro Ortega y Gasset", desc: "Supervisión, seguridad y dinamización" },
       { start: "2024-04", end: "2024-06", type: "formacion", title: "Dinamización tiempo libre", org: "Iworking", desc: "Procesos grupales y organización de actividades" },
+      { start: "2024-06", end: "2024-07", type: "experiencia", title: "Prácticas de monitor", org: "Centro Ortega y Gasset", desc: "Supervisión, seguridad y dinamización" },
       { start: "2024-09", end: "2026-03", type: "formacion", title: "Administración y Finanzas", org: "IES Pedro Mercedes", desc: "Grado superior en gestión empresarial" },
       { start: "2024-10", end: "2024-11", type: "formacion", title: "Análisis Power BI", org: "Formación", desc: "Análisis de datos y visualización" },
       { start: "2024-11", end: "2024-11", type: "formacion", title: "Socorrista acuático", org: "Global Encesap", desc: "Rescate, salvamento y protocolos de seguridad" },
@@ -283,24 +146,24 @@
     const maxMonth = Math.max(...events.map(e => dateToMonths(e.end)));
     const timelineRange = maxMonth - minMonth + 1;
 
-    function getPosition(event) {
-      const start = dateToMonths(event.start) - minMonth;
-      const end = dateToMonths(event.end) - minMonth;
-      const duration = end - start + 1;
-      return { start, duration };
+    function getMonthPos(dateStr) {
+      return dateToMonths(dateStr) - minMonth;
     }
 
-    function layoutRows(events) {
+    // Calcular filas por solapamiento
+    function assignRows(events) {
       const rows = [];
       events.forEach(event => {
-        const pos = getPosition(event);
-        let placed = false;
+        const eventStart = getMonthPos(event.start);
+        const eventEnd = getMonthPos(event.end);
 
+        let placed = false;
         for (let row of rows) {
           let canPlace = true;
           for (let existing of row) {
-            const ePos = getPosition(existing);
-            if (!(pos.start + pos.duration <= ePos.start || pos.start >= ePos.start + ePos.duration)) {
+            const existStart = getMonthPos(existing.start);
+            const existEnd = getMonthPos(existing.end);
+            if (!(eventEnd < existStart || eventStart > existEnd)) {
               canPlace = false;
               break;
             }
@@ -311,7 +174,6 @@
             break;
           }
         }
-
         if (!placed) {
           rows.push([event]);
         }
@@ -319,153 +181,143 @@
       return rows;
     }
 
-    const rows = layoutRows(events);
+    const rows = assignRows(events);
     const svg = document.getElementById("timeline");
-    const barHeight = 4;
-    const markerHeight = 24;
-    const rowGap = 80;
-    const padding = 60;
-    const svgWidth = Math.max(1200, window.innerWidth - 100);
+    const rowHeight = 70;
+    const barHeight = 8;
+    const markerHeight = 20;
+    const padding = 80;
+    const svgWidth = window.innerWidth > 1024 ? 1200 : window.innerWidth - 40;
 
-    let totalHeight = padding + rows.length * rowGap + 40;
+    const totalHeight = padding * 2 + rows.length * rowHeight;
     svg.setAttribute("viewBox", `0 0 ${svgWidth} ${totalHeight}`);
+    svg.setAttribute("preserveAspectRatio", "xMidYMid meet");
 
-    const connectorPoints = [];
     const contentWidth = svgWidth - 160;
+    const connectorSegments = [];
 
-    // Dibujar barras y marcadores
+    // Dibujar barras
     rows.forEach((row, rowIdx) => {
-      const centerY = padding + rowIdx * rowGap + markerHeight / 2;
+      const yCenter = padding + rowIdx * rowHeight;
       const direction = rowIdx % 2 === 0 ? 1 : -1;
 
-      row.forEach(event => {
-        const pos = getPosition(event);
-        let x1, x2;
+      row.forEach((event, eventIdx) => {
+        const startPos = getMonthPos(event.start);
+        const endPos = getMonthPos(event.end);
+        const duration = endPos - startPos + 1;
 
+        let x1, x2;
         if (direction === 1) {
-          x1 = 80 + (pos.start / timelineRange) * contentWidth;
-          x2 = 80 + ((pos.start + pos.duration) / timelineRange) * contentWidth;
+          x1 = 80 + (startPos / timelineRange) * contentWidth;
+          x2 = 80 + ((startPos + duration) / timelineRange) * contentWidth;
         } else {
-          x1 = 80 + ((timelineRange - pos.start - pos.duration) / timelineRange) * contentWidth;
-          x2 = 80 + ((timelineRange - pos.start) / timelineRange) * contentWidth;
+          x1 = 80 + ((timelineRange - startPos - duration) / timelineRange) * contentWidth;
+          x2 = 80 + ((timelineRange - startPos) / timelineRange) * contentWidth;
         }
 
         const color = event.type === "formacion" ? "#9ba7ff" : "#3885d6";
 
-        // Línea horizontal
+        // Barra horizontal
         const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
         line.setAttribute("x1", x1);
-        line.setAttribute("y1", centerY);
+        line.setAttribute("y1", yCenter);
         line.setAttribute("x2", x2);
-        line.setAttribute("y2", centerY);
+        line.setAttribute("y2", yCenter);
         line.setAttribute("stroke", color);
-        line.setAttribute("stroke-width", "4");
+        line.setAttribute("stroke-width", "8");
         line.setAttribute("stroke-linecap", "round");
         svg.appendChild(line);
 
         // Marcador inicio
-        const marker1 = document.createElementNS("http://www.w3.org/2000/svg", "line");
-        marker1.setAttribute("x1", x1);
-        marker1.setAttribute("y1", centerY - markerHeight / 2);
-        marker1.setAttribute("x2", x1);
-        marker1.setAttribute("y2", centerY + markerHeight / 2);
-        marker1.setAttribute("stroke", color);
-        marker1.setAttribute("stroke-width", "3");
-        marker1.setAttribute("stroke-linecap", "round");
-        svg.appendChild(marker1);
+        const m1 = document.createElementNS("http://www.w3.org/2000/svg", "line");
+        m1.setAttribute("x1", x1);
+        m1.setAttribute("y1", yCenter - markerHeight / 2);
+        m1.setAttribute("x2", x1);
+        m1.setAttribute("y2", yCenter + markerHeight / 2);
+        m1.setAttribute("stroke", color);
+        m1.setAttribute("stroke-width", "2");
+        m1.setAttribute("stroke-linecap", "round");
+        svg.appendChild(m1);
 
         // Marcador fin
-        const marker2 = document.createElementNS("http://www.w3.org/2000/svg", "line");
-        marker2.setAttribute("x1", x2);
-        marker2.setAttribute("y1", centerY - markerHeight / 2);
-        marker2.setAttribute("x2", x2);
-        marker2.setAttribute("y2", centerY + markerHeight / 2);
-        marker2.setAttribute("stroke", color);
-        marker2.setAttribute("stroke-width", "3");
-        marker2.setAttribute("stroke-linecap", "round");
-        svg.appendChild(marker2);
+        const m2 = document.createElementNS("http://www.w3.org/2000/svg", "line");
+        m2.setAttribute("x1", x2);
+        m2.setAttribute("y1", yCenter - markerHeight / 2);
+        m2.setAttribute("x2", x2);
+        m2.setAttribute("y2", yCenter + markerHeight / 2);
+        m2.setAttribute("stroke", color);
+        m2.setAttribute("stroke-width", "2");
+        m2.setAttribute("stroke-linecap", "round");
+        svg.appendChild(m2);
 
         // Etiqueta
-        const textY = direction === 1 ? centerY - 14 : centerY + 14;
+        const textY = direction === 1 ? yCenter - 18 : yCenter + 18;
         const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
         text.setAttribute("x", (x1 + x2) / 2);
         text.setAttribute("y", textY);
         text.setAttribute("text-anchor", "middle");
-        text.setAttribute("font-size", "0.8rem");
-        text.setAttribute("font-weight", "600");
+        text.setAttribute("font-size", "0.75rem");
+        text.setAttribute("font-weight", "500");
         text.setAttribute("fill", color);
+        text.setAttribute("pointer-events", "none");
         text.textContent = event.title;
         svg.appendChild(text);
 
-        // Guardar punto para conectores
-        connectorPoints.push({ x: x2, y: centerY, rowIdx });
+        // Área interactiva
+        const rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+        rect.setAttribute("x", Math.min(x1, x2) - 5);
+        rect.setAttribute("y", yCenter - markerHeight);
+        rect.setAttribute("width", Math.abs(x2 - x1) + 10);
+        rect.setAttribute("height", markerHeight * 2);
+        rect.setAttribute("fill", "transparent");
+        rect.setAttribute("cursor", "pointer");
+
+        rect.addEventListener("mouseenter", (e) => {
+          const tooltip = document.getElementById("tooltip");
+          document.getElementById("tooltip-badge").textContent = event.type === "formacion" ? "Formación" : "Experiencia";
+          document.getElementById("tooltip-badge").className = `tooltip-badge ${event.type}`;
+          document.getElementById("tooltip-title").textContent = event.title;
+          document.getElementById("tooltip-org").textContent = event.org;
+          document.getElementById("tooltip-desc").textContent = event.desc;
+          tooltip.classList.add("visible");
+          tooltip.style.left = (e.clientX + 10) + "px";
+          tooltip.style.top = (e.clientY + 10) + "px";
+        });
+
+        rect.addEventListener("mousemove", (e) => {
+          const tooltip = document.getElementById("tooltip");
+          tooltip.style.left = (e.clientX + 10) + "px";
+          tooltip.style.top = (e.clientY + 10) + "px";
+        });
+
+        rect.addEventListener("mouseleave", () => {
+          document.getElementById("tooltip").classList.remove("visible");
+        });
+
+        svg.appendChild(rect);
+
+        // Guardar para conectores
+        connectorSegments.push({ x: x2, y: yCenter, rowIdx, color });
       });
     });
 
-    // Dibujar línea conectora (serpiente)
-    if (connectorPoints.length > 0) {
-      const sortedPoints = connectorPoints.sort((a, b) => {
-        if (a.rowIdx !== b.rowIdx) return a.rowIdx - b.rowIdx;
-        return a.x - b.x;
-      });
+    // Dibujar conectores rojos entre filas
+    for (let i = 0; i < connectorSegments.length - 1; i++) {
+      const current = connectorSegments[i];
+      const next = connectorSegments[i + 1];
 
-      let pathD = `M ${sortedPoints[0].x} ${sortedPoints[0].y}`;
-      for (let i = 1; i < sortedPoints.length; i++) {
-        const current = sortedPoints[i];
-        const prev = sortedPoints[i - 1];
-
-        if (current.rowIdx !== prev.rowIdx) {
-          const midY = (current.y + prev.y) / 2;
-          pathD += ` L ${prev.x} ${midY}`;
-          pathD += ` L ${current.x} ${midY}`;
-        }
-        pathD += ` L ${current.x} ${current.y}`;
+      if (current.rowIdx !== next.rowIdx) {
+        const connector = document.createElementNS("http://www.w3.org/2000/svg", "line");
+        connector.setAttribute("x1", current.x);
+        connector.setAttribute("y1", current.y);
+        connector.setAttribute("x2", next.x);
+        connector.setAttribute("y2", next.y);
+        connector.setAttribute("stroke", "#ff5a7e");
+        connector.setAttribute("stroke-width", "2");
+        connector.setAttribute("stroke-linecap", "round");
+        svg.insertBefore(connector, svg.firstChild);
       }
-
-      const connectorPath = document.createElementNS("http://www.w3.org/2000/svg", "path");
-      connectorPath.setAttribute("d", pathD);
-      connectorPath.setAttribute("class", "connector-path");
-      svg.insertBefore(connectorPath, svg.firstChild);
     }
-
-    // Generar tarjetas
-    const sortedEvents = [...events].sort((a, b) => {
-      const aEnd = dateToMonths(a.end);
-      const bEnd = dateToMonths(b.end);
-      return bEnd - aEnd;
-    });
-
-    const cardsContainer = document.getElementById("timeline-cards");
-    sortedEvents.forEach(event => {
-      const card = document.createElement("div");
-      card.className = `timeline-card ${event.type}`;
-
-      const badge = document.createElement("div");
-      badge.className = "timeline-card-badge";
-      badge.textContent = event.type === "formacion" ? "Formación" : "Experiencia";
-
-      const title = document.createElement("h3");
-      title.textContent = event.title;
-
-      const description = document.createElement("p");
-      description.textContent = event.desc;
-
-      const org = document.createElement("p");
-      org.className = "timeline-card-org";
-      org.textContent = event.org;
-
-      const date = document.createElement("span");
-      date.className = "timeline-card-date";
-      date.textContent = `${event.start} → ${event.end}`;
-
-      card.appendChild(badge);
-      card.appendChild(title);
-      card.appendChild(description);
-      card.appendChild(org);
-      card.appendChild(date);
-
-      cardsContainer.appendChild(card);
-    });
   </script>
 </body>
 </html>
