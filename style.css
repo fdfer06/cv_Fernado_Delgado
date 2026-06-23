@@ -990,10 +990,27 @@ h2 {
 
 .timeline-top {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
-  gap: 16px;
-  align-items: baseline;
+  gap: 8px 16px;
+  align-items: center;
   margin-bottom: 12px;
+}
+
+.timeline-org {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.org-logo {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  object-fit: contain;
+  background: #fff;
+  border-radius: 8px;
+  padding: 4px;
 }
 
 .timeline-top span {
