@@ -402,7 +402,31 @@
       });
     });
 
-    // Sin líneas conectoras - solo marcadores verticales
+    // Dibujar línea conectora (serpiente)
+    if (connectorPoints.length > 0) {
+      const sortedPoints = connectorPoints.sort((a, b) => {
+        if (a.rowIdx !== b.rowIdx) return a.rowIdx - b.rowIdx;
+        return a.x - b.x;
+      });
+
+      let pathD = `M ${sortedPoints[0].x} ${sortedPoints[0].y}`;
+      for (let i = 1; i < sortedPoints.length; i++) {
+        const current = sortedPoints[i];
+        const prev = sortedPoints[i - 1];
+
+        if (current.rowIdx !== prev.rowIdx) {
+          const midY = (current.y + prev.y) / 2;
+          pathD += ` L ${prev.x} ${midY}`;
+          pathD += ` L ${current.x} ${midY}`;
+        }
+        pathD += ` L ${current.x} ${current.y}`;
+      }
+
+      const connectorPath = document.createElementNS("http://www.w3.org/2000/svg", "path");
+      connectorPath.setAttribute("d", pathD);
+      connectorPath.setAttribute("class", "connector-path");
+      svg.insertBefore(connectorPath, svg.firstChild);
+    }
 
     // Generar tarjetas
     const sortedEvents = [...events].sort((a, b) => {
