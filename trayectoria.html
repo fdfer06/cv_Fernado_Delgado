@@ -331,8 +331,8 @@
     let totalHeight = padding + rows.length * rowGap + 40;
     svg.setAttribute("viewBox", `0 0 ${svgWidth} ${totalHeight}`);
 
-    const connectorPoints = [];
     const contentWidth = svgWidth - 160;
+    const barData = [];
 
     // Dibujar barras y marcadores
     rows.forEach((row, rowIdx) => {
@@ -398,35 +398,28 @@
         text.textContent = event.title;
         svg.appendChild(text);
 
-        // Guardar punto para conectores
-        connectorPoints.push({ x: x2, y: centerY, rowIdx });
+        // Guardar datos para conectores
+        barData.push({ x2, centerY, rowIdx, pos });
       });
     });
 
-    // Dibujar línea conectora (serpiente)
-    if (connectorPoints.length > 0) {
-      const sortedPoints = connectorPoints.sort((a, b) => {
-        if (a.rowIdx !== b.rowIdx) return a.rowIdx - b.rowIdx;
-        return a.x - b.x;
-      });
+    // Dibujar líneas conectoras entre filas
+    for (let i = 0; i < barData.length - 1; i++) {
+      const current = barData[i];
+      const next = barData[i + 1];
 
-      let pathD = `M ${sortedPoints[0].x} ${sortedPoints[0].y}`;
-      for (let i = 1; i < sortedPoints.length; i++) {
-        const current = sortedPoints[i];
-        const prev = sortedPoints[i - 1];
-
-        if (current.rowIdx !== prev.rowIdx) {
-          const midY = (current.y + prev.y) / 2;
-          pathD += ` L ${prev.x} ${midY}`;
-          pathD += ` L ${current.x} ${midY}`;
-        }
-        pathD += ` L ${current.x} ${current.y}`;
+      // Si cambia de fila, conectar
+      if (current.rowIdx !== next.rowIdx) {
+        const connector = document.createElementNS("http://www.w3.org/2000/svg", "line");
+        connector.setAttribute("x1", current.x2);
+        connector.setAttribute("y1", current.centerY);
+        connector.setAttribute("x2", next.x2);
+        connector.setAttribute("y2", next.centerY);
+        connector.setAttribute("stroke", "#ff4757");
+        connector.setAttribute("stroke-width", "2");
+        connector.setAttribute("stroke-linecap", "round");
+        svg.insertBefore(connector, svg.firstChild);
       }
-
-      const connectorPath = document.createElementNS("http://www.w3.org/2000/svg", "path");
-      connectorPath.setAttribute("d", pathD);
-      connectorPath.setAttribute("class", "connector-path");
-      svg.insertBefore(connectorPath, svg.firstChild);
     }
 
     // Generar tarjetas
