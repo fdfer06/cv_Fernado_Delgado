@@ -195,6 +195,33 @@
     const totalHeight = padding * 2 + rows.length * rowHeight;
     svg.setAttribute("viewBox", `0 0 ${contentWidth + 80} ${totalHeight}`);
 
+    let activeRect = null;
+
+    function positionTooltip(tooltip, clientX, clientY) {
+      const margin = 12;
+      const rect = tooltip.getBoundingClientRect();
+
+      let left = clientX + 10;
+      if (left + rect.width + margin > window.innerWidth) {
+        left = clientX - rect.width - 10;
+      }
+      left = Math.max(margin, Math.min(left, window.innerWidth - rect.width - margin));
+
+      let top = clientY + 10;
+      if (top + rect.height + margin > window.innerHeight) {
+        top = clientY - rect.height - 10;
+      }
+      top = Math.max(margin, top);
+
+      tooltip.style.left = left + "px";
+      tooltip.style.top = top + "px";
+    }
+
+    document.addEventListener("click", () => {
+      document.getElementById("tooltip").classList.remove("visible");
+      activeRect = null;
+    });
+
     // Dibujar barras
     rows.forEach((row, rowIdx) => {
       const yCenter = padding + rowIdx * rowHeight;
@@ -229,26 +256,24 @@
         rect.setAttribute("fill", "transparent");
         rect.setAttribute("cursor", "pointer");
 
-        rect.addEventListener("mouseenter", (e) => {
+        rect.addEventListener("click", (e) => {
+          e.stopPropagation();
           const tooltip = document.getElementById("tooltip");
+
+          if (activeRect === rect && tooltip.classList.contains("visible")) {
+            tooltip.classList.remove("visible");
+            activeRect = null;
+            return;
+          }
+
+          activeRect = rect;
           document.getElementById("tooltip-badge").textContent = event.type === "formacion" ? "Formación" : "Experiencia";
           document.getElementById("tooltip-badge").className = `tooltip-badge ${event.type}`;
           document.getElementById("tooltip-title").textContent = event.title;
           document.getElementById("tooltip-org").textContent = event.org;
           document.getElementById("tooltip-desc").textContent = event.desc;
           tooltip.classList.add("visible");
-          tooltip.style.left = (e.clientX + 10) + "px";
-          tooltip.style.top = (e.clientY + 10) + "px";
-        });
-
-        rect.addEventListener("mousemove", (e) => {
-          const tooltip = document.getElementById("tooltip");
-          tooltip.style.left = (e.clientX + 10) + "px";
-          tooltip.style.top = (e.clientY + 10) + "px";
-        });
-
-        rect.addEventListener("mouseleave", () => {
-          document.getElementById("tooltip").classList.remove("visible");
+          positionTooltip(tooltip, e.clientX, e.clientY);
         });
 
         svg.appendChild(rect);
