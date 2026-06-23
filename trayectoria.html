@@ -10,13 +10,13 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <style>
-    .timeline-container {
-      padding: 60px 0;
+    .timeline-wrapper {
+      padding: 60px 40px;
     }
 
     .timeline-svg {
       width: 100%;
-      min-height: 600px;
+      min-height: 500px;
       display: block;
     }
 
@@ -31,7 +31,7 @@
       display: none;
       pointer-events: none;
       box-shadow: var(--shadow);
-      max-width: 220px;
+      max-width: 240px;
     }
 
     .tooltip.visible {
@@ -43,10 +43,10 @@
       font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 0.04em;
-      margin-bottom: 4px;
       padding: 3px 8px;
       border-radius: 3px;
       display: inline-block;
+      margin-bottom: 6px;
     }
 
     .tooltip-badge.formacion {
@@ -75,7 +75,7 @@
       color: var(--muted);
       font-size: 0.8rem;
       line-height: 1.4;
-      margin-top: 4px;
+      margin-top: 6px;
     }
   </style>
 </head>
@@ -106,7 +106,7 @@
       </section>
 
       <section class="section">
-        <div class="timeline-container">
+        <div class="timeline-wrapper">
           <svg class="timeline-svg" id="timeline"></svg>
           <div class="tooltip" id="tooltip">
             <div class="tooltip-badge" id="tooltip-badge"></div>
@@ -150,7 +150,7 @@
       return dateToMonths(dateStr) - minMonth;
     }
 
-    // Calcular filas por solapamiento
+    // Asignar filas por solapamiento
     function assignRows(events) {
       const rows = [];
       events.forEach(event => {
@@ -183,92 +183,44 @@
 
     const rows = assignRows(events);
     const svg = document.getElementById("timeline");
-    const rowHeight = 70;
-    const barHeight = 8;
-    const markerHeight = 20;
-    const padding = 80;
-    const svgWidth = window.innerWidth > 1024 ? 1200 : window.innerWidth - 40;
+    const rowHeight = 60;
+    const padding = 60;
+    const contentWidth = window.innerWidth > 1024 ? 1000 : window.innerWidth - 80;
 
     const totalHeight = padding * 2 + rows.length * rowHeight;
-    svg.setAttribute("viewBox", `0 0 ${svgWidth} ${totalHeight}`);
-    svg.setAttribute("preserveAspectRatio", "xMidYMid meet");
-
-    const contentWidth = svgWidth - 160;
-    const connectorSegments = [];
+    svg.setAttribute("viewBox", `0 0 ${contentWidth + 80} ${totalHeight}`);
 
     // Dibujar barras
     rows.forEach((row, rowIdx) => {
       const yCenter = padding + rowIdx * rowHeight;
-      const direction = rowIdx % 2 === 0 ? 1 : -1;
 
-      row.forEach((event, eventIdx) => {
+      row.forEach(event => {
         const startPos = getMonthPos(event.start);
         const endPos = getMonthPos(event.end);
         const duration = endPos - startPos + 1;
 
-        let x1, x2;
-        if (direction === 1) {
-          x1 = 80 + (startPos / timelineRange) * contentWidth;
-          x2 = 80 + ((startPos + duration) / timelineRange) * contentWidth;
-        } else {
-          x1 = 80 + ((timelineRange - startPos - duration) / timelineRange) * contentWidth;
-          x2 = 80 + ((timelineRange - startPos) / timelineRange) * contentWidth;
-        }
+        const x1 = 40 + (startPos / timelineRange) * contentWidth;
+        const x2 = 40 + ((startPos + duration) / timelineRange) * contentWidth;
 
         const color = event.type === "formacion" ? "#9ba7ff" : "#3885d6";
 
-        // Barra horizontal
+        // Barra
         const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
         line.setAttribute("x1", x1);
         line.setAttribute("y1", yCenter);
         line.setAttribute("x2", x2);
         line.setAttribute("y2", yCenter);
         line.setAttribute("stroke", color);
-        line.setAttribute("stroke-width", "8");
+        line.setAttribute("stroke-width", "10");
         line.setAttribute("stroke-linecap", "round");
         svg.appendChild(line);
-
-        // Marcador inicio
-        const m1 = document.createElementNS("http://www.w3.org/2000/svg", "line");
-        m1.setAttribute("x1", x1);
-        m1.setAttribute("y1", yCenter - markerHeight / 2);
-        m1.setAttribute("x2", x1);
-        m1.setAttribute("y2", yCenter + markerHeight / 2);
-        m1.setAttribute("stroke", color);
-        m1.setAttribute("stroke-width", "2");
-        m1.setAttribute("stroke-linecap", "round");
-        svg.appendChild(m1);
-
-        // Marcador fin
-        const m2 = document.createElementNS("http://www.w3.org/2000/svg", "line");
-        m2.setAttribute("x1", x2);
-        m2.setAttribute("y1", yCenter - markerHeight / 2);
-        m2.setAttribute("x2", x2);
-        m2.setAttribute("y2", yCenter + markerHeight / 2);
-        m2.setAttribute("stroke", color);
-        m2.setAttribute("stroke-width", "2");
-        m2.setAttribute("stroke-linecap", "round");
-        svg.appendChild(m2);
-
-        // Etiqueta
-        const textY = direction === 1 ? yCenter - 18 : yCenter + 18;
-        const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
-        text.setAttribute("x", (x1 + x2) / 2);
-        text.setAttribute("y", textY);
-        text.setAttribute("text-anchor", "middle");
-        text.setAttribute("font-size", "0.75rem");
-        text.setAttribute("font-weight", "500");
-        text.setAttribute("fill", color);
-        text.setAttribute("pointer-events", "none");
-        text.textContent = event.title;
-        svg.appendChild(text);
 
         // Área interactiva
         const rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
         rect.setAttribute("x", Math.min(x1, x2) - 5);
-        rect.setAttribute("y", yCenter - markerHeight);
+        rect.setAttribute("y", yCenter - 15);
         rect.setAttribute("width", Math.abs(x2 - x1) + 10);
-        rect.setAttribute("height", markerHeight * 2);
+        rect.setAttribute("height", 30);
         rect.setAttribute("fill", "transparent");
         rect.setAttribute("cursor", "pointer");
 
@@ -295,29 +247,8 @@
         });
 
         svg.appendChild(rect);
-
-        // Guardar para conectores
-        connectorSegments.push({ x: x2, y: yCenter, rowIdx, color });
       });
     });
-
-    // Dibujar conectores rojos entre filas
-    for (let i = 0; i < connectorSegments.length - 1; i++) {
-      const current = connectorSegments[i];
-      const next = connectorSegments[i + 1];
-
-      if (current.rowIdx !== next.rowIdx) {
-        const connector = document.createElementNS("http://www.w3.org/2000/svg", "line");
-        connector.setAttribute("x1", current.x);
-        connector.setAttribute("y1", current.y);
-        connector.setAttribute("x2", next.x);
-        connector.setAttribute("y2", next.y);
-        connector.setAttribute("stroke", "#ff5a7e");
-        connector.setAttribute("stroke-width", "2");
-        connector.setAttribute("stroke-linecap", "round");
-        svg.insertBefore(connector, svg.firstChild);
-      }
-    }
   </script>
 </body>
 </html>
