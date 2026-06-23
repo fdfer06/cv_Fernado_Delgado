@@ -121,9 +121,18 @@
           </div>
         </div>
       </section>
+
+      <section class="section">
+        <div class="section-heading">
+          <p class="section-kicker">Detalle</p>
+          <h2>Formación y experiencia desglosadas</h2>
+        </div>
+        <div class="card-grid two-up" id="trayectoria-cards"></div>
+      </section>
     </main>
   </div>
 
+  <script src="script.js"></script>
   <script>
     const events = [
       { start: "2022-09", end: "2024-06", type: "formacion", title: "Grado Medio Gestión Administrativa", org: "IES Pedro Mercedes", desc: "Formación reglada en procesos administrativos" },
@@ -133,7 +142,7 @@
       { start: "2024-04", end: "2024-06", type: "formacion", title: "Dinamización tiempo libre", org: "Iworking", desc: "Procesos grupales y organización de actividades" },
       { start: "2024-06", end: "2024-07", type: "experiencia", title: "Prácticas de monitor", org: "Centro Ortega y Gasset", desc: "Supervisión, seguridad y dinamización" },
       { start: "2024-09", end: "2026-03", type: "formacion", title: "Administración y Finanzas", org: "IES Pedro Mercedes", desc: "Grado superior en gestión empresarial" },
-      { start: "2024-10", end: "2024-11", type: "formacion", title: "Análisis Power BI", org: "Formación", desc: "Análisis de datos y visualización" },
+      { start: "2024-10", end: "2024-11", type: "formacion", title: "Análisis Power BI", org: "CEOE", desc: "Análisis de datos y visualización" },
       { start: "2024-11", end: "2024-11", type: "formacion", title: "Socorrista acuático", org: "Global Encesap", desc: "Rescate, salvamento y protocolos de seguridad" },
       { start: "2025-02", end: "2026-06", type: "experiencia", title: "Monitor VR y desarrollador", org: "Virtual Cuenca", desc: "Monitor de VR y desarrollo del juego" },
       { start: "2025-06", end: "2025-09", type: "experiencia", title: "Socorrista acuático", org: "Clima Cuenca SLU", desc: "Vigilancia, atención y control de material" },
@@ -279,6 +288,48 @@
         svg.appendChild(rect);
       });
     });
+
+    // Tarjetas de detalle
+    const orgLogos = {
+      "IES Pedro Mercedes": "assets/logos/pedro-mercedes.png",
+      "Iworking": "assets/logos/iworking.png",
+      "MRW": "assets/logos/mrw.webp",
+      "Centro Ortega y Gasset": "assets/logos/ortega-y-gasset.png",
+      "Global Encesap": "assets/logos/global-encesap.jpg",
+      "Virtual Cuenca": "assets/logos/virtual-cuenca.png",
+      "Clima Cuenca SLU": "assets/logos/clima-cuenca.jpg",
+      "Obrescam": "assets/logos/obrescam.png"
+    };
+
+    const monthNames = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"];
+
+    function formatMonth(dateStr) {
+      const [year, month] = dateStr.split("-").map(Number);
+      const name = monthNames[month - 1];
+      return `${name.charAt(0).toUpperCase()}${name.slice(1)} ${year}`;
+    }
+
+    function formatRange(event) {
+      return event.start === event.end ? formatMonth(event.start) : `${formatMonth(event.start)} - ${formatMonth(event.end)}`;
+    }
+
+    const cardsContainer = document.getElementById("trayectoria-cards");
+    cardsContainer.innerHTML = events.map(event => {
+      const logo = orgLogos[event.org];
+      const orgBlock = logo
+        ? `<img class="org-logo" src="${logo}" alt="Logo de ${event.org}"><p style="font-size: 0.9rem; color: var(--muted); margin: 0;">${event.org}</p>`
+        : `<p style="font-size: 0.9rem; color: var(--muted); margin: 0;">${event.org}</p>`;
+      const desc = event.desc.endsWith(".") ? event.desc : `${event.desc}.`;
+      return `
+        <article class="panel">
+          <span class="tooltip-badge ${event.type}">${event.type === "formacion" ? "Formación" : "Experiencia"}</span>
+          <h3>${event.title}</h3>
+          <div class="timeline-org" style="margin: 8px 0;">${orgBlock}</div>
+          <p>${desc}</p>
+          <p style="font-size: 0.9rem; color: var(--accent); font-weight: 600; margin-top: 8px;"><strong>${formatRange(event)}</strong></p>
+        </article>
+      `;
+    }).join("");
   </script>
 </body>
 </html>
