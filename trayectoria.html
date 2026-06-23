@@ -332,7 +332,6 @@
     svg.setAttribute("viewBox", `0 0 ${svgWidth} ${totalHeight}`);
 
     const contentWidth = svgWidth - 160;
-    const barData = [];
 
     // Dibujar barras y marcadores
     rows.forEach((row, rowIdx) => {
@@ -397,29 +396,7 @@
         text.setAttribute("fill", color);
         text.textContent = event.title;
         svg.appendChild(text);
-
-        // Guardar datos para conectores
-        barData.push({ x2, centerY, rowIdx, pos });
       });
-    });
-
-    // Dibujar líneas conectoras entre filas
-    for (let i = 0; i < barData.length - 1; i++) {
-      const current = barData[i];
-      const next = barData[i + 1];
-
-      // Si cambia de fila, conectar
-      if (current.rowIdx !== next.rowIdx) {
-        const connector = document.createElementNS("http://www.w3.org/2000/svg", "line");
-        connector.setAttribute("x1", current.x2);
-        connector.setAttribute("y1", current.centerY);
-        connector.setAttribute("x2", next.x2);
-        connector.setAttribute("y2", next.centerY);
-        connector.setAttribute("stroke", "#ff4757");
-        connector.setAttribute("stroke-width", "2");
-        connector.setAttribute("stroke-linecap", "round");
-        svg.insertBefore(connector, svg.firstChild);
-      }
     }
 
     // Generar tarjetas
