@@ -12,44 +12,45 @@
   <style>
     .timeline-serpent {
       position: relative;
-      padding: 40px 0;
+      padding: 60px 40px;
     }
 
     .timeline-svg {
       width: 100%;
       display: block;
+      background: transparent;
     }
 
-    .serpent-bar {
+    .gantt-bar {
       cursor: pointer;
       transition: opacity 200ms ease, filter 200ms ease;
-      rx: 6;
-      ry: 6;
     }
 
-    .serpent-bar:hover {
-      filter: brightness(1.15);
+    .gantt-bar:hover {
+      filter: brightness(1.2);
       opacity: 1;
     }
 
-    .bar-text {
-      font-size: 0.8rem;
-      font-weight: 600;
-      fill: white;
-      pointer-events: none;
-    }
-
-    .bar-date-label {
-      font-size: 0.7rem;
-      fill: rgba(255, 255, 255, 0.8);
-      pointer-events: none;
-    }
-
-    .connector-line {
-      stroke: rgba(148, 163, 184, 0.2);
-      stroke-width: 2;
+    .bar-marker {
+      stroke-width: 3;
       fill: none;
       pointer-events: none;
+    }
+
+    .bar-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      fill: currentColor;
+      pointer-events: none;
+    }
+
+    .connector-path {
+      stroke: #ff4757;
+      stroke-width: 3;
+      fill: none;
+      pointer-events: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
     }
 
     .timeline-popup {
@@ -321,107 +322,114 @@
 
     const rows = layoutRows(events);
     const svg = document.getElementById("timeline");
-    const barHeight = 45;
+    const barHeight = 4;
+    const markerHeight = 24;
     const rowGap = 80;
     const padding = 60;
-    const svgWidth = Math.max(1000, window.innerWidth - 100);
+    const svgWidth = Math.max(1200, window.innerWidth - 100);
 
-    let totalHeight = padding + rows.length * rowGap;
+    let totalHeight = padding + rows.length * rowGap + 40;
     svg.setAttribute("viewBox", `0 0 ${svgWidth} ${totalHeight}`);
 
-    // Dibujar línea central (serpiente)
-    let currentY = padding + barHeight / 2;
-    const pathPoints = [{ x: 80, y: currentY }];
+    const connectorPoints = [];
+    const contentWidth = svgWidth - 160;
 
-    for (let i = 0; i < rows.length - 1; i++) {
-      const direction = i % 2 === 0 ? 1 : -1;
-      const nextX = direction === 1 ? svgWidth - 80 : 80;
-      pathPoints.push({ x: nextX, y: currentY });
-      currentY += rowGap;
-      pathPoints.push({ x: nextX, y: currentY });
-    }
-    pathPoints.push({ x: (rows.length % 2 === 1 ? svgWidth - 80 : 80), y: currentY });
-
-    const pathData = pathPoints.map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.x} ${p.y}`).join(' ');
-    const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
-    path.setAttribute("d", pathData);
-    path.setAttribute("class", "connector-line");
-    path.setAttribute("stroke-width", "6");
-    path.setAttribute("stroke", "#ff4757");
-    path.setAttribute("stroke-linecap", "round");
-    path.setAttribute("stroke-linejoin", "round");
-    svg.appendChild(path);
-
-    // Dibujar barras
+    // Dibujar barras y marcadores
     rows.forEach((row, rowIdx) => {
-      const yPos = padding + rowIdx * rowGap;
+      const centerY = padding + rowIdx * rowGap + markerHeight / 2;
       const direction = rowIdx % 2 === 0 ? 1 : -1;
-      const contentWidth = svgWidth - 160;
 
       row.forEach(event => {
         const pos = getPosition(event);
-        let x, width;
+        let x1, x2;
 
         if (direction === 1) {
-          x = 80 + (pos.start / timelineRange) * contentWidth;
-          width = (pos.duration / timelineRange) * contentWidth;
+          x1 = 80 + (pos.start / timelineRange) * contentWidth;
+          x2 = 80 + ((pos.start + pos.duration) / timelineRange) * contentWidth;
         } else {
-          const rightX = 80 + ((pos.start + pos.duration) / timelineRange) * contentWidth;
-          width = (pos.duration / timelineRange) * contentWidth;
-          x = rightX - width;
+          x1 = 80 + ((timelineRange - pos.start - pos.duration) / timelineRange) * contentWidth;
+          x2 = 80 + ((timelineRange - pos.start) / timelineRange) * contentWidth;
         }
 
-        width = Math.max(width, 30);
+        const color = event.type === "formacion" ? "#9ba7ff" : "#3885d6";
 
-        const color = event.type === "formacion" ? "#9ba7ff" : "#38d9c6";
-        const rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
-        rect.setAttribute("class", "serpent-bar");
-        rect.setAttribute("x", x);
-        rect.setAttribute("y", yPos);
-        rect.setAttribute("width", width);
-        rect.setAttribute("height", barHeight);
-        rect.setAttribute("fill", color);
-        rect.setAttribute("opacity", "0.85");
+        // Línea horizontal
+        const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+        line.setAttribute("x1", x1);
+        line.setAttribute("y1", centerY);
+        line.setAttribute("x2", x2);
+        line.setAttribute("y2", centerY);
+        line.setAttribute("stroke", color);
+        line.setAttribute("stroke-width", "4");
+        line.setAttribute("stroke-linecap", "round");
+        svg.appendChild(line);
 
-        rect.addEventListener("mouseenter", (e) => {
-          const popup = document.getElementById("popup");
-          popup.classList.add("visible");
-          const badge = document.getElementById("popup-badge");
-          badge.textContent = event.type === "formacion" ? "FORMACIÓN" : "EXPERIENCIA";
-          badge.className = `popup-badge ${event.type}`;
-          document.getElementById("popup-title").textContent = `${event.org}`;
-          document.getElementById("popup-text").innerHTML = `<strong>${event.title}</strong><br>${event.desc}`;
-          popup.style.left = (e.clientX + 10) + "px";
-          popup.style.top = (e.clientY + 10) + "px";
-        });
+        // Marcador inicio
+        const marker1 = document.createElementNS("http://www.w3.org/2000/svg", "line");
+        marker1.setAttribute("x1", x1);
+        marker1.setAttribute("y1", centerY - markerHeight / 2);
+        marker1.setAttribute("x2", x1);
+        marker1.setAttribute("y2", centerY + markerHeight / 2);
+        marker1.setAttribute("stroke", color);
+        marker1.setAttribute("stroke-width", "3");
+        marker1.setAttribute("stroke-linecap", "round");
+        svg.appendChild(marker1);
 
-        rect.addEventListener("mousemove", (e) => {
-          const popup = document.getElementById("popup");
-          popup.style.left = (e.clientX + 10) + "px";
-          popup.style.top = (e.clientY + 10) + "px";
-        });
-
-        rect.addEventListener("mouseleave", () => {
-          document.getElementById("popup").classList.remove("visible");
-        });
-
-        svg.appendChild(rect);
+        // Marcador fin
+        const marker2 = document.createElementNS("http://www.w3.org/2000/svg", "line");
+        marker2.setAttribute("x1", x2);
+        marker2.setAttribute("y1", centerY - markerHeight / 2);
+        marker2.setAttribute("x2", x2);
+        marker2.setAttribute("y2", centerY + markerHeight / 2);
+        marker2.setAttribute("stroke", color);
+        marker2.setAttribute("stroke-width", "3");
+        marker2.setAttribute("stroke-linecap", "round");
+        svg.appendChild(marker2);
 
         // Etiqueta
-        if (width > 80) {
-          const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
-          text.setAttribute("class", "bar-text");
-          text.setAttribute("x", x + width / 2);
-          text.setAttribute("y", yPos + barHeight / 2 + 2);
-          text.setAttribute("text-anchor", "middle");
-          text.setAttribute("dominant-baseline", "middle");
-          text.textContent = event.title;
-          svg.appendChild(text);
-        }
+        const textY = direction === 1 ? centerY - 14 : centerY + 14;
+        const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        text.setAttribute("x", (x1 + x2) / 2);
+        text.setAttribute("y", textY);
+        text.setAttribute("text-anchor", "middle");
+        text.setAttribute("font-size", "0.8rem");
+        text.setAttribute("font-weight", "600");
+        text.setAttribute("fill", color);
+        text.textContent = event.title;
+        svg.appendChild(text);
+
+        // Guardar punto para conectores
+        connectorPoints.push({ x: x2, y: centerY, rowIdx });
       });
     });
 
-    // Generar tarjetillas ordenadas por fecha (más reciente primero)
+    // Dibujar línea conectora (serpiente)
+    if (connectorPoints.length > 0) {
+      const sortedPoints = connectorPoints.sort((a, b) => {
+        if (a.rowIdx !== b.rowIdx) return a.rowIdx - b.rowIdx;
+        return a.x - b.x;
+      });
+
+      let pathD = `M ${sortedPoints[0].x} ${sortedPoints[0].y}`;
+      for (let i = 1; i < sortedPoints.length; i++) {
+        const current = sortedPoints[i];
+        const prev = sortedPoints[i - 1];
+
+        if (current.rowIdx !== prev.rowIdx) {
+          const midY = (current.y + prev.y) / 2;
+          pathD += ` L ${prev.x} ${midY}`;
+          pathD += ` L ${current.x} ${midY}`;
+        }
+        pathD += ` L ${current.x} ${current.y}`;
+      }
+
+      const connectorPath = document.createElementNS("http://www.w3.org/2000/svg", "path");
+      connectorPath.setAttribute("d", pathD);
+      connectorPath.setAttribute("class", "connector-path");
+      svg.insertBefore(connectorPath, svg.firstChild);
+    }
+
+    // Generar tarjetas
     const sortedEvents = [...events].sort((a, b) => {
       const aEnd = dateToMonths(a.end);
       const bEnd = dateToMonths(b.end);
