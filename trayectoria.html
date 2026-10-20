@@ -140,7 +140,8 @@
       { start: "2026-04", end: "2026-06", type: "experiencia", title: "Prácticas administrativas", org: "Obrescam", desc: "Gestión y seguimiento documental" },
       { start: "2026-06", end: "2026-09", type: "experiencia", title: "Trabajador administrativo", org: "Obrescam", desc: "Administrativo contratado" },
       { start: "2026-06", end: "2026-09", type: "experiencia", title: "Socorrista acuático", org: "Clima Cuenca SLU", desc: "Socorrista de temporada" },
-      { start: "2026-10", end: "2026-10", type: "formacion", title: "Competencias Digitales DigComp 2.2 — Nivel C2", org: "UCLM", desc: "Nivel máximo del marco europeo DigComp: información, comunicación, creación digital, seguridad y resolución de problemas" }
+      { start: "2026-10", end: "2026-10", type: "formacion", title: "Competencias Digitales DigComp 2.2 — Nivel C2", org: "UCLM", desc: "Nivel máximo del marco europeo DigComp: información, comunicación, creación digital, seguridad y resolución de problemas" },
+      { start: "2026-07", end: "2026-10", type: "formacion", title: "Certificaciones Anthropic Academy", org: "Anthropic Academy", desc: "17 certificaciones en IA generativa, herramientas Claude y AI Fluency.", list: ["AI Fluency: AI Capabilities & Limitations", "AI Fluency: Framework & Foundations", "AI Fluency For Students", "AI Fluency For Educators", "AI Fluency For Nonprofits", "AI Fluency For K-12 Educators", "AI Fluency For Small Business", "AI Fluency For Builders", "AI Fluency For Creative Work", "Teaching The AI Fluency Framework", "Claude 101", "Claude Platform", "Introduction to Claude Cowork", "Introduction to Subagents", "Claude Code in Action", "Introduction to Agent Skills", "Introduction to Model Context Protocol"] }
     ];
 
     function dateToMonths(dateStr) {
@@ -319,7 +320,8 @@
       "Clima Cuenca SLU": "assets/logos/clima-cuenca.jpg",
       "Obrescam": "assets/logos/obrescam.png",
       "CEOE": "assets/logos/ceoe.svg",
-      "UCLM": "assets/logos/uclm.svg"
+      "UCLM": "assets/logos/uclm.svg",
+      "Anthropic Academy": "assets/logos/anthropic.svg"
     };
 
     const monthNames = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"];
@@ -341,12 +343,16 @@
         ? `<img class="org-logo" src="${logo}" alt="Logo de ${event.org}"><p style="font-size: 0.9rem; color: var(--muted); margin: 0;">${event.org}</p>`
         : `<p style="font-size: 0.9rem; color: var(--muted); margin: 0;">${event.org}</p>`;
       const desc = event.desc.endsWith(".") ? event.desc : `${event.desc}.`;
+      const listHtml = event.list
+        ? `<ul style="margin: 8px 0 0; padding-left: 18px; color: var(--muted); font-size: 0.85rem; line-height: 1.7;">${event.list.map(item => `<li>${item}</li>`).join("")}</ul>`
+        : "";
       return `
         <article class="panel">
           <span class="tooltip-badge ${event.type}">${event.type === "formacion" ? "Formación" : "Experiencia"}</span>
           <h3>${event.title}</h3>
           <div class="timeline-org" style="margin: 8px 0;">${orgBlock}</div>
           <p>${desc}</p>
+          ${listHtml}
           <p style="font-size: 0.9rem; color: var(--accent); font-weight: 600; margin-top: 8px;"><strong>${formatRange(event)}</strong></p>
         </article>
       `;
