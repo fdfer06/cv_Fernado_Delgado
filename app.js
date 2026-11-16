@@ -292,8 +292,12 @@ ScrollTrigger.create({ start: 0, end: "max", onUpdate: function (s) {
 /* cursor */
 var cur = $("#cur");
 if (cur && matchMedia("(hover:hover) and (pointer:fine)").matches) {
-  var qx = gsap.quickTo(cur, "x", { duration: 0.35, ease: "power3" }), qy = gsap.quickTo(cur, "y", { duration: 0.35, ease: "power3" });
-  window.addEventListener("pointermove", function (e) { cur.classList.add("on"); qx(e.clientX); qy(e.clientY); });
+  var qx = gsap.quickTo(cur, "x", { duration: 0.15, ease: "power3" }), qy = gsap.quickTo(cur, "y", { duration: 0.15, ease: "power3" });
+  window.addEventListener("pointermove", function (e) {
+    if (e.pointerType === "touch") return;
+    document.documentElement.classList.add("has-cur");
+    cur.classList.add("on"); qx(e.clientX); qy(e.clientY);
+  });
   document.addEventListener("pointerover", function (e) { cur.classList.toggle("big", !!(e.target.closest && e.target.closest("[data-cur],a,button"))); });
   document.addEventListener("pointerleave", function () { cur.classList.remove("on"); });
 }

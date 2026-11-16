@@ -302,6 +302,8 @@ body[data-page="contacto"],html:has(body[data-page="contacto"]){background:var(-
 
 /* socorrismo: el medidor ocupa todo el alto visible y la boya te sigue */
 .sos{overflow:clip}
+/* con el círculo activo se oculta la flecha del ratón */
+html.has-cur,html.has-cur *{cursor:none!important}
 .gauge-fix{position:fixed;z-index:60;left:max(10px,calc(var(--gut) / 2 - 9px));top:92px;bottom:22px;width:18px;opacity:0;pointer-events:none;transition:opacity .3s}
 .gauge-fix.on{opacity:1}
 .gauge-fix .g-rail{position:absolute;left:8px;top:0;bottom:0;width:2px;height:auto}
