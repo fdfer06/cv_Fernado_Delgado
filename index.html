@@ -1,127 +1,60 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Fernando Delgado Izquierdo | CV profesional</title>
-  <meta name="description" content="CV profesional de Fernando Delgado Izquierdo: desarrollo Unity y VR, C#, FishNet, administración, socorrismo, monitoraje y experiencia real en empresa.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Fernando Delgado Izquierdo</title>
+<meta name="description" content="Currículum de Fernando Delgado Izquierdo: desarrollo VR en Unity, administración, socorrismo y monitoraje. Cuenca, España.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="style.css">
 </head>
-<body>
-  <div class="page-shell">
-    <header class="site-header">
-      <a class="brand" href="index.html">
-        <span class="brand-mark">FD</span>
-        <span>Fernando Delgado Izquierdo</span>
-      </a>
-      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Abrir menú">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-      <nav class="main-nav" id="main-nav">
-        <a class="active" href="index.html">Inicio</a>
-        <a href="desarrollo.html">Desarrollo</a>
-        <a href="administracion.html">Administración</a>
-        <a href="socorrismo.html">Socorrismo y monitor</a>
-        <a href="trayectoria.html">Formación y Experiencia</a>
-        <a href="contacto.html">Contacto</a>
-      </nav>
-    </header>
+<body data-page="inicio">
+<div id="prog"></div>
+<div id="cur"></div>
+<header class="bar mono" id="bar">
+  <a class="bar-brand" href="index.html" aria-label="Inicio">F.D.</a>
+  <nav class="bar-nav" aria-label="Secciones"><a href="desarrollo.html">Desarrollo</a><a href="administracion.html">Administración</a><a href="socorrismo.html">Socorrismo</a><a href="trayectoria.html">Trayectoria</a><a href="contacto.html">Contacto</a></nav>
+  <div class="bar-r"><button class="bar-mot mono" id="mot" aria-pressed="false" title="Pausar o reanudar los movimientos continuos">Movimiento: sí</button><span id="pct">00</span><button class="bar-menu mono" id="menu" aria-expanded="false" aria-controls="ov">Índice</button></div>
+</header>
+<nav class="overlay" id="ov" aria-label="Índice"><a href="index.html">Inicio</a><a href="desarrollo.html">Desarrollo</a><a href="administracion.html">Administración</a><a href="socorrismo.html">Socorrismo</a><a href="trayectoria.html">Trayectoria</a><a href="contacto.html">Contacto</a></nav>
+<main>
 
-    <main>
-      <section class="hero hero-home tech-hero">
-        <div class="hero-copy">
-          <p class="eyebrow">Desarrollo VR / Administración / Monitoraje</p>
-          <h1>Perfil técnico con experiencia real y trato directo con personas.</h1>
-          <p class="lead">
-            Soy Fernando Delgado Izquierdo. Combino desarrollo en Unity y C#, trabajo administrativo y experiencia en socorrismo y monitoraje. Mi diferenciador es Skyrun, un proyecto VR multijugador usado en entorno real.
-          </p>
-          <div class="hero-stats" aria-label="Datos destacados del perfil">
-            <div>
-              <strong>VR</strong>
-              <span>Unity + C# + FishNet</span>
-            </div>
-            <div>
-              <strong>Admin</strong>
-              <span>documentación y Power BI</span>
-            </div>
-            <div>
-              <strong>SOS</strong>
-              <span>seguridad y atención</span>
-            </div>
-          </div>
-          <div class="cta-row">
-            <a class="button button-primary" href="desarrollo.html">Ver proyecto VR</a>
-            <a class="button button-secondary" href="https://github.com/fdfer06/cv_Fernado_Delgado">GitHub</a>
-            <a class="button button-secondary" href="CV_Fernando_Delgado.pdf" download>Descargar CV</a>
-          </div>
-        </div>
-        <aside class="hero-console" aria-label="Resumen técnico">
-          <div class="console-top">
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
-          <p><span>&gt;</span> foco: Unity VR + perfil administrativo</p>
-          <p><span>&gt;</span> proyecto: Skyrun multijugador</p>
-          <p><span>&gt;</span> base: Administración y Finanzas</p>
-          <p><span>&gt;</span> trato: usuarios, seguridad y sesiones</p>
-        </aside>
-      </section>
-
-      <section class="section">
-        <div class="section-heading">
-          <p class="section-kicker">Especialidades</p>
-          <h2>Tres perfiles, con desarrollo VR como diferenciador</h2>
-        </div>
-        <div class="card-grid">
-          <a class="panel profile-card profile-dev" href="desarrollo.html">
-            <span class="card-icon">VR</span>
-            <h3>Desarrollo</h3>
-            <p>Unity, C#, VR/XR, FishNet, Python, Codex, automatización web y herramientas internas para empresa.</p>
-            <span class="card-link">Ver proyecto</span>
-          </a>
-          <a class="panel profile-card profile-admin" href="administracion.html">
-            <span class="card-icon">BI</span>
-            <h3>Administración</h3>
-            <p>Gestión administrativa, documentación, prácticas en Obrescam, herramientas digitales y Power BI.</p>
-            <span class="card-link">Ver perfil</span>
-          </a>
-          <a class="panel profile-card profile-safety" href="socorrismo.html">
-            <span class="card-icon">SOS</span>
-            <h3>Socorrismo y monitor</h3>
-            <p>Supervisión, seguridad, primeros auxilios, monitoraje y experiencia directa con personas.</p>
-            <span class="card-link">Ver perfil</span>
-          </a>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="section-heading">
-          <p class="section-kicker">Ahora mismo</p>
-          <h2>Lo que mejor resume mi perfil</h2>
-        </div>
-        <div class="split-layout">
-          <article class="panel">
-            <h3>Actividad actual</h3>
-            <p>
-              Mi experiencia más reciente combina la administración y el desarrollo de automatizaciones en Obrescam con el socorrismo acuático en Clima Cuenca SLU. Skyrun, el proyecto VR que desarrollé en Virtual Cuenca, sigue siendo mi proyecto técnico de referencia.
-            </p>
-          </article>
-          <article class="panel">
-            <h3>Base profesional</h3>
-            <p>
-              Tengo formación técnica en Unity, base administrativa reglada y titulaciones vinculadas a socorrismo, servicios acuáticos y atención al público. Actualmente curso el Grado en Relaciones Laborales y Desarrollo de RR. HH. en la UCLM, y cuento con carnet B y vehículo propio.
-            </p>
-          </article>
-        </div>
-      </section>
-    </main>
+<section class="hero" id="top">
+  <canvas id="field" aria-hidden="true"></canvas>
+  <div class="hero-top wrap mono"><span>Cuenca, ES · 40°04′N 2°08′O</span><span class="avail"><i></i>Disponible</span><span>Currículum 2026</span></div>
+  <h1 class="name wrap" aria-label="Fernando Delgado Izquierdo">
+    <span class="ln"><span class="in">Fernando</span></span>
+    <span class="ln"><span class="in"><em>Delgado</em><small>Izquierdo</small></span></span>
+  </h1>
+  <div class="hero-foot wrap">
+    <p class="hero-lede">Desarrollo en Unity y C#, trabajo en administración y soy socorrista y monitor. Mi juego de realidad virtual, Skyrun, se usa en sala con hasta ocho jugadores.</p>
+    <ul class="hero-roles mono"><li>Desarrollo VR · Unity</li><li>Administración y finanzas</li><li>Socorrismo y monitoraje</li></ul>
+    <div class="hero-cta"><a class="btn btn-p mono" href="desarrollo.html" data-cur>Ver Skyrun <svg width="16" height="12" viewBox="0 0 18 12" fill="none" stroke="currentColor"><path d="M0 6h16M11 1l5 5-5 5"/></svg></a><a class="btn btn-g mono" href="CV_Fernando_Delgado.pdf" target="_blank" rel="noopener" data-cur>Abrir CV en PDF</a></div>
   </div>
-  <script src="script.js"></script>
+  <div class="ticker mono" aria-hidden="true"><div class="ticker-track" id="tk1"></div></div>
+</section>
+
+<section class="intro wrap">
+  <p class="mani" id="mani">Hago juegos de realidad virtual con Unity. También he trabajado en la administración de Obrescam y como socorrista en Clima Cuenca, y estudio Relaciones Laborales y Desarrollo de RR. HH. en la UCLM.</p>
+</section>
+
+<section class="idx wrap">
+  <div class="sec-t"><h2>Secciones</h2></div>
+  <ul class="rows">
+    <li class="row" data-cur><a class="r-in" href="desarrollo.html"><span class="r-main"><span class="r-t">Desarrollo</span><span class="r-s">Skyrun y dos automatizaciones en Python</span></span><span class="r-d mono">Unity · C# · FishNet</span><span class="r-a" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M5 15L15 5M7 5h8v8"/></svg></span></a></li>
+    <li class="row" data-cur><a class="r-in" href="administracion.html"><span class="r-main"><span class="r-t">Administración</span><span class="r-s">Formación, Obrescam y MRW</span></span><span class="r-d mono">Power BI · DigComp C2</span><span class="r-a" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M5 15L15 5M7 5h8v8"/></svg></span></a></li>
+    <li class="row" data-cur><a class="r-in" href="socorrismo.html"><span class="r-main"><span class="r-t">Socorrismo y monitoraje</span><span class="r-s">Clima Cuenca, Virtual Cuenca y titulaciones</span></span><span class="r-d mono">Socorrista acuático</span><span class="r-a" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M5 15L15 5M7 5h8v8"/></svg></span></a></li>
+    <li class="row" data-cur><a class="r-in" href="trayectoria.html"><span class="r-main"><span class="r-t">Trayectoria</span><span class="r-s">Formación y experiencia por años</span></span><span class="r-d mono">2023 — 2026</span><span class="r-a" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M5 15L15 5M7 5h8v8"/></svg></span></a></li>
+    <li class="row" data-cur><a class="r-in" href="contacto.html"><span class="r-main"><span class="r-t">Contacto</span><span class="r-s">Correo, teléfono y GitHub</span></span><span class="r-d mono">Cuenca y provincia</span><span class="r-a" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M5 15L15 5M7 5h8v8"/></svg></span></a></li>
+  </ul>
+  <div class="foot2 mono"><span>© 2026 Fernando Delgado Izquierdo</span><span>Cuenca, España</span></div>
+</section>
+
+</main>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="app.js"></script>
 </body>
 </html>
