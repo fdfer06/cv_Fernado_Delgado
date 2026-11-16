@@ -1,155 +1,55 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Fernando Delgado Izquierdo | Socorrismo y Monitor</title>
-  <meta name="description" content="Perfil de socorrismo y monitoraje de Fernando Delgado Izquierdo: seguridad, primeros auxilios, atención a personas y experiencia en actividades.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Socorrismo y monitoraje · Fernando Delgado Izquierdo</title>
+<meta name="description" content="Socorrista acuático en Clima Cuenca, monitor de realidad virtual en Virtual Cuenca y titulaciones de socorrismo y primeros auxilios.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="style.css">
 </head>
-<body>
-  <div class="page-shell">
-    <header class="site-header">
-      <a class="brand" href="index.html">
-        <span class="brand-mark">FD</span>
-        <span>Fernando Delgado Izquierdo</span>
-      </a>
-      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Abrir menú">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-      <nav class="main-nav" id="main-nav">
-        <a href="index.html">Inicio</a>
-        <a href="desarrollo.html">Desarrollo</a>
-        <a href="administracion.html">Administración</a>
-        <a class="active" href="socorrismo.html">Socorrismo y monitor</a>
-        <a href="trayectoria.html">Formación y Experiencia</a>
-        <a href="contacto.html">Contacto</a>
-      </nav>
-    </header>
+<body data-page="socorrismo">
+<div id="prog"></div>
+<div id="cur"></div>
+<header class="bar mono" id="bar">
+  <a class="bar-brand" href="index.html" aria-label="Inicio">F.D.</a>
+  <nav class="bar-nav" aria-label="Secciones"><a href="desarrollo.html">Desarrollo</a><a href="administracion.html">Administración</a><a href="socorrismo.html" aria-current="page">Socorrismo</a><a href="trayectoria.html">Trayectoria</a><a href="contacto.html">Contacto</a></nav>
+  <div class="bar-r"><button class="bar-mot mono" id="mot" aria-pressed="false" title="Pausar o reanudar los movimientos continuos">Movimiento: sí</button><span id="pct">00</span><button class="bar-menu mono" id="menu" aria-expanded="false" aria-controls="ov">Índice</button></div>
+</header>
+<nav class="overlay" id="ov" aria-label="Índice"><a href="index.html">Inicio</a><a href="desarrollo.html">Desarrollo</a><a href="administracion.html">Administración</a><a href="socorrismo.html">Socorrismo</a><a href="trayectoria.html">Trayectoria</a><a href="contacto.html">Contacto</a></nav>
+<main>
 
-    <main>
-      <section class="page-hero">
-        <p class="eyebrow">Perfil de socorrismo y monitor</p>
-        <h1>Seguridad, supervisión y trato directo con personas</h1>
-        <p class="lead">
-          Cuento con formación y experiencia tanto en socorrismo acuático como en monitoraje, supervisión de actividades y trabajo directo con personas en entornos reales.
-        </p>
-      </section>
-
-      <section class="section">
-        <div class="section-heading">
-          <p class="section-kicker">Formación relacionada</p>
-          <h2>Certificaciones y cursos</h2>
+<div class="sos" id="top">
+  <canvas id="waves" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <div class="chap mono" style="color:var(--foam)"><span>Socorrismo y monitoraje</span><span>Clima Cuenca · Virtual Cuenca</span></div>
+    <div class="sos-grid">
+      <div class="sos-l">
+        <h1 class="mega mid bob" id="h-vigilar" data-word="Socorrismo" aria-label="Socorrismo">Socorrismo</h1>
+        <p class="lead">Trabajo como socorrista acuático en Clima Cuenca y fui monitor de realidad virtual en Virtual Cuenca. Tengo la titulación de socorrista, primeros auxilios y coordinación de servicios acuáticos.</p>
+        <div class="gauge" aria-hidden="true">
+          <div class="g-rail"><div class="g-buoy" id="buoy"></div></div>
+          <div class="g-txt"><span class="mono">Profundidad</span><b id="depth">0,0 m</b><span class="mono">&nbsp;</span></div>
         </div>
-        <div class="timeline">
-          <article class="timeline-item panel">
-            <div class="timeline-top">
-              <div class="timeline-org">
-                <img class="org-logo" src="assets/logos/iworking.png" alt="Logo de Iworking">
-                <h3>Iworking</h3>
-              </div>
-              <span>Abril - Julio 2025</span>
-            </div>
-            <p>Dinamización de actividades de tiempo libre educativo infantil y juvenil.</p>
-          </article>
-          <article class="timeline-item panel">
-            <div class="timeline-top">
-              <div class="timeline-org">
-                <img class="org-logo" src="assets/logos/global-encesap.jpg" alt="Logo de Global Encesap">
-                <h3>Global Encesap</h3>
-              </div>
-              <span>Noviembre 2024</span>
-            </div>
-            <p>Socorrista acuático: rescate, salvamento acuático, prevención de riesgos y protocolos de seguridad.</p>
-          </article>
-          <article class="timeline-item panel">
-            <div class="timeline-top">
-              <h3>Formación complementaria</h3>
-              <span>Certificadas</span>
-            </div>
-            <p>Primeros auxilios, coordinador de servicios acuáticos, mantenimiento integral de piscinas, prevención de riesgos laborales.</p>
-          </article>
-        </div>
-        <div class="split-layout" style="margin-top: 40px;">
-          <article class="panel">
-            <h3>Competencias clave</h3>
-            <ul class="detail-list">
-              <li>Dinamización de actividades</li>
-              <li>Socorrismo acuático</li>
-              <li>Primeros auxilios</li>
-              <li>Coordinación de servicios</li>
-              <li>Mantenimiento de instalaciones</li>
-              <li>Prevención de riesgos</li>
-            </ul>
-          </article>
-          <article class="panel">
-            <h3>Competencias</h3>
-            <ul class="detail-list">
-              <li>Supervisión</li>
-              <li>Seguridad</li>
-              <li>Atención a personas</li>
-              <li>Dinamización de actividades</li>
-              <li>Responsabilidad y calma</li>
-            </ul>
-          </article>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="section-heading">
-          <p class="section-kicker">Experiencia relacionada</p>
-          <h2>Socorrismo, monitoraje y trabajo con personas</h2>
-        </div>
-        <div class="timeline">
-          <article class="timeline-item panel">
-            <div class="timeline-top">
-              <div class="timeline-org">
-                <img class="org-logo" src="assets/logos/clima-cuenca.jpg" alt="Logo de Clima Cuenca SLU">
-                <h3>Clima Cuenca SLU</h3>
-              </div>
-              <span>Junio 2025 - Septiembre 2025</span>
-            </div>
-            <p>Trabajo como socorrista acuático, con vigilancia y supervisión de piscinas y zonas acuáticas, atención al público, resolución de incidencias, control del material de rescate y supervisión del estado general de las instalaciones.</p>
-          </article>
-          <article class="timeline-item panel">
-            <div class="timeline-top">
-              <div class="timeline-org">
-                <img class="org-logo" src="assets/logos/virtual-cuenca.png" alt="Logo de Virtual Cuenca">
-                <h3>Virtual Cuenca</h3>
-              </div>
-              <span>Febrero 2025 - Junio 2026</span>
-            </div>
-            <p>Trabajo de monitor de realidad virtual, con supervisión de sesiones, explicación de normas, acompañamiento a usuarios y resolución de incidencias durante la actividad.</p>
-          </article>
-          <article class="timeline-item panel">
-            <div class="timeline-top">
-              <div class="timeline-org">
-                <img class="org-logo" src="assets/logos/clima-cuenca.jpg" alt="Logo de Clima Cuenca SLU">
-                <h3>Clima Cuenca SLU</h3>
-              </div>
-              <span>Junio - Septiembre 2026</span>
-            </div>
-            <p>Vuelta a la empresa como socorrista acuático, de nuevo con vigilancia, atención al público y resolución de incidencias en las instalaciones.</p>
-          </article>
-          <article class="timeline-item panel">
-            <div class="timeline-top">
-              <div class="timeline-org">
-                <img class="org-logo" src="assets/logos/ortega-y-gasset.png" alt="Logo del Centro de Estudios Ortega y Gasset">
-                <h3>Centro de Estudios Ortega y Gasset</h3>
-              </div>
-              <span>Junio - Julio 2024</span>
-            </div>
-            <p>Planificación de actividades, supervisión, seguridad y dinamización de juegos y grupos.</p>
-          </article>
-        </div>
-      </section>
-    </main>
+      </div>
+      <div class="sos-r">
+        <h2 class="grp">Experiencia</h2>
+        <ul class="rows" id="rows-s1"></ul>
+        <h2 class="grp">Formación</h2>
+        <ul class="rows" id="rows-s2"></ul>
+      </div>
+    </div>
+    <div class="skills" aria-hidden="true"><div class="skills-track" id="tk2"></div></div>
+    <a class="next" href="trayectoria.html" data-cur><span class="next-in"><span class="mono">Siguiente</span><span class="next-t">Trayectoria</span></span><svg viewBox="0 0 56 36" fill="none" stroke="currentColor" stroke-width="2"><path d="M0 18h52M36 2l16 16-16 16"/></svg></a>
+    <div class="foot2 mono"><span>© 2026 Fernando Delgado Izquierdo</span><span>Cuenca, España</span></div>
   </div>
-  <script src="script.js"></script>
+</div>
+
+</main>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="app.js"></script>
 </body>
 </html>

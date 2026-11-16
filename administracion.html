@@ -1,208 +1,45 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Fernando Delgado Izquierdo | Administración</title>
-  <meta name="description" content="Perfil administrativo de Fernando Delgado Izquierdo: gestión administrativa, administración y finanzas, prácticas en empresa y atención al cliente.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Administración · Fernando Delgado Izquierdo</title>
+<meta name="description" content="Formación en gestión administrativa y administración y finanzas, prácticas y contrato en Obrescam, Power BI y DigComp C2.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="style.css">
 </head>
-<body>
-  <div class="page-shell">
-    <header class="site-header">
-      <a class="brand" href="index.html">
-        <span class="brand-mark">FD</span>
-        <span>Fernando Delgado Izquierdo</span>
-      </a>
-      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Abrir menú">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-      <nav class="main-nav" id="main-nav">
-        <a href="index.html">Inicio</a>
-        <a href="desarrollo.html">Desarrollo</a>
-        <a class="active" href="administracion.html">Administración</a>
-        <a href="socorrismo.html">Socorrismo y monitor</a>
-        <a href="trayectoria.html">Formación y Experiencia</a>
-        <a href="contacto.html">Contacto</a>
-      </nav>
-    </header>
+<body data-page="admin">
+<div id="prog"></div>
+<div id="cur"></div>
+<header class="bar mono" id="bar" data-on="paper">
+  <a class="bar-brand" href="index.html" aria-label="Inicio">F.D.</a>
+  <nav class="bar-nav" aria-label="Secciones"><a href="desarrollo.html">Desarrollo</a><a href="administracion.html" aria-current="page">Administración</a><a href="socorrismo.html">Socorrismo</a><a href="trayectoria.html">Trayectoria</a><a href="contacto.html">Contacto</a></nav>
+  <div class="bar-r"><button class="bar-mot mono" id="mot" aria-pressed="false" title="Pausar o reanudar los movimientos continuos">Movimiento: sí</button><span id="pct">00</span><button class="bar-menu mono" id="menu" aria-expanded="false" aria-controls="ov">Índice</button></div>
+</header>
+<nav class="overlay" id="ov" aria-label="Índice"><a href="index.html">Inicio</a><a href="desarrollo.html">Desarrollo</a><a href="administracion.html">Administración</a><a href="socorrismo.html">Socorrismo</a><a href="trayectoria.html">Trayectoria</a><a href="contacto.html">Contacto</a></nav>
+<main>
 
-    <main>
-      <section class="page-hero">
-        <p class="eyebrow">Perfil administrativo</p>
-        <h1>Formación reglada y experiencia en entorno de oficina</h1>
-        <p class="lead">
-          Tengo base académica en gestión administrativa y administración y finanzas, junto con prácticas reales en empresa y capacidad para organizar, atender y apoyar tareas documentales.
-        </p>
-      </section>
+<div class="adm" id="top">
+  <div class="wrap">
+    <div class="chap mono"><span>Administración</span><span>Administración y finanzas</span></div>
+    <h1 class="mega long mk"><span class="mask"><span>Administración</span></span><em class="mask"><span>.</span></em></h1>
+    <p class="page-lead">Formación reglada en gestión administrativa y en administración y finanzas, prácticas en empresa y dos automatizaciones en Python para evitar tareas repetitivas.</p>
 
-      <section class="section">
-        <div class="section-heading">
-          <p class="section-kicker">Base académica</p>
-          <h2>Formación y fortalezas</h2>
-        </div>
-        <div class="card-grid two-up">
-          <article class="panel">
-            <span class="tooltip-badge formacion">Formación</span>
-            <h3>Técnico en Gestión Administrativa</h3>
-            <div class="timeline-org" style="margin: 8px 0;">
-              <img class="org-logo" src="assets/logos/pedro-mercedes.png" alt="Logo de IES Pedro Mercedes">
-              <p style="font-size: 0.9rem; color: var(--muted); margin: 0;">IES Pedro Mercedes</p>
-            </div>
-            <p>Base reglada en procesos administrativos, organización documental y funcionamiento de oficina.</p>
-            <p style="font-size: 0.9rem; color: var(--accent); font-weight: 600; margin-top: 8px;"><strong>Junio 2024</strong></p>
-          </article>
-          <article class="panel">
-            <span class="tooltip-badge formacion">Formación</span>
-            <h3>Administración y Finanzas</h3>
-            <div class="timeline-org" style="margin: 8px 0;">
-              <img class="org-logo" src="assets/logos/pedro-mercedes.png" alt="Logo de IES Pedro Mercedes">
-              <p style="font-size: 0.9rem; color: var(--muted); margin: 0;">IES Pedro Mercedes</p>
-            </div>
-            <p>Grado superior orientado a gestión empresarial, operaciones administrativas y funcionamiento interno de empresa.</p>
-            <p style="font-size: 0.9rem; color: var(--accent); font-weight: 600; margin-top: 8px;"><strong>Septiembre 2024 - Julio 2026</strong></p>
-          </article>
-          <article class="panel">
-            <span class="tooltip-badge formacion">Formación</span>
-            <h3>Análisis de datos con Power BI</h3>
-            <div class="timeline-org" style="margin: 8px 0;">
-              <img class="org-logo" src="assets/logos/ceoe.svg" alt="Logo de CEOE">
-              <p style="font-size: 0.9rem; color: var(--muted); margin: 0;">CEOE</p>
-            </div>
-            <p>Formación complementaria en análisis de datos y uso de Power BI como herramienta de apoyo y visualización.</p>
-            <p style="font-size: 0.9rem; color: var(--accent); font-weight: 600; margin-top: 8px;"><strong>2025</strong></p>
-          </article>
-          <article class="panel">
-            <span class="tooltip-badge formacion">Formación</span>
-            <h3>Competencias Digitales DigComp 2.2 — Nivel C2</h3>
-            <div class="timeline-org" style="margin: 8px 0;">
-              <img class="org-logo" src="assets/logos/uclm.svg" alt="Logo de UCLM">
-              <p style="font-size: 0.9rem; color: var(--muted); margin: 0;">Universidad de Castilla-La Mancha (UCLM)</p>
-            </div>
-            <p>Nivel máximo del marco europeo DigComp 2.2: búsqueda y gestión de información, comunicación digital, creación de contenidos, seguridad y resolución de problemas tecnológicos.</p>
-            <p style="font-size: 0.9rem; color: var(--accent); font-weight: 600; margin-top: 8px;"><strong>Octubre 2026</strong></p>
-            <div class="cta-row" style="margin-top: 10px;">
-              <a class="button button-secondary" href="assets/docs/digcomp-c2-uclm-2026.pdf" target="_blank">Ver certificado</a>
-            </div>
-          </article>
-          <article class="panel">
-            <span class="tooltip-badge formacion">Formación</span>
-            <h3>Grado en Relaciones Laborales y Desarrollo de RR. HH.</h3>
-            <div class="timeline-org" style="margin: 8px 0;">
-              <img class="org-logo" src="assets/logos/uclm.svg" alt="Logo de UCLM">
-              <p style="font-size: 0.9rem; color: var(--muted); margin: 0;">UCLM · Facultad de CC. Sociales de Cuenca</p>
-            </div>
-            <p>Grado universitario centrado en relaciones laborales, gestión de recursos humanos y marco jurídico del trabajo.</p>
-            <p style="font-size: 0.9rem; color: var(--accent); font-weight: 600; margin-top: 8px;"><strong>En curso</strong></p>
-          </article>
-          <article class="panel">
-            <span class="tooltip-badge formacion">Formación</span>
-            <h3>Certificaciones Anthropic Academy</h3>
-            <div class="timeline-org" style="margin: 8px 0;">
-              <img class="org-logo" src="assets/logos/anthropic.svg" alt="Logo de Anthropic">
-              <p style="font-size: 0.9rem; color: var(--muted); margin: 0;">Anthropic Academy</p>
-            </div>
-            <p>17 certificaciones verificables en IA generativa, herramientas Claude y AI Fluency.</p>
-            <ul style="margin: 8px 0 0; padding-left: 18px; color: var(--muted); font-size: 0.85rem; line-height: 1.7;">
-              <li>AI Fluency: AI Capabilities &amp; Limitations</li>
-              <li>AI Fluency: Framework &amp; Foundations</li>
-              <li>AI Fluency For Students / Educators / Nonprofits / K-12 / Small Business / Builders / Creative Work</li>
-              <li>Teaching The AI Fluency Framework</li>
-              <li>Claude 101 · Claude Platform</li>
-              <li>Introduction to Claude Cowork</li>
-              <li>Introduction to Subagents · Introduction to Agent Skills</li>
-              <li>Claude Code in Action</li>
-              <li>Introduction to Model Context Protocol</li>
-            </ul>
-            <p style="font-size: 0.9rem; color: var(--accent); font-weight: 600; margin-top: 8px;"><strong>15 Julio 2026 – Octubre 2026</strong></p>
-          </article>
-          <article class="panel">
-            <h3>Fortalezas</h3>
-            <ul class="detail-list compact-list">
-              <li>Organización</li>
-              <li>Atención al cliente</li>
-              <li>Gestión de correos y llamadas</li>
-              <li>Uso de herramientas digitales</li>
-              <li>Aprendizaje rápido</li>
-            </ul>
-          </article>
-        </div>
-      </section>
+    <div class="sec-t"><h2>Formación</h2><span class="mono">Pulsa Anthropic para ver las 17</span></div>
+    <ul class="rows" id="rows-f"></ul>
 
-      <section class="section">
-        <div class="section-heading">
-          <p class="section-kicker">Experiencia relacionada</p>
-          <h2>Prácticas y apoyo administrativo</h2>
-        </div>
-        <div class="timeline">
-          <article class="timeline-item panel">
-            <div class="timeline-top">
-              <div class="timeline-org">
-                <img class="org-logo" src="assets/logos/mrw.webp" alt="Logo de MRW">
-                <h3>MRW</h3>
-              </div>
-              <span>Abril - Junio 2024</span>
-            </div>
-            <p>Tareas generales de oficina, gestión de correos, llamadas, rutas y herramientas digitales de la franquicia.</p>
-          </article>
-          <article class="timeline-item panel">
-            <div class="timeline-top">
-              <div class="timeline-org">
-                <img class="org-logo" src="assets/logos/obrescam.png" alt="Logo de Obrescam">
-                <h3>Obrescam</h3>
-              </div>
-              <span>Abril - Junio 2026 (prácticas)</span>
-            </div>
-            <p>Apoyo administrativo en tareas de gestión, organización y seguimiento documental en empresa.</p>
-          </article>
-          <article class="timeline-item panel">
-            <div class="timeline-top">
-              <div class="timeline-org">
-                <img class="org-logo" src="assets/logos/obrescam.png" alt="Logo de Obrescam">
-                <h3>Obrescam</h3>
-              </div>
-              <span>Junio - Septiembre 2026</span>
-            </div>
-            <p>Tras finalizar las prácticas, contratado como trabajador administrativo: gestión, organización y seguimiento documental.</p>
-          </article>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="section-heading">
-          <p class="section-kicker">Obrescam</p>
-          <h2>Prácticas con mejora de procesos internos</h2>
-        </div>
-        <div class="split-layout">
-          <article class="panel">
-            <h3>Administración aplicada</h3>
-            <p>
-              En Obrescam he apoyado tareas administrativas y he detectado procesos repetitivos que podían
-              organizarse mejor con herramientas propias, especialmente en documentación de licitaciones y RRHH.
-            </p>
-          </article>
-          <article class="panel">
-            <h3>Automatizaciones documentadas</h3>
-            <p>
-              Los proyectos técnicos están explicados en la sección de Desarrollo, porque combinan Python,
-              automatización web, generación documental y uso de Codex como apoyo para análisis y mejora del flujo.
-            </p>
-            <div class="cta-row">
-              <a class="button button-primary" href="desarrollo.html#obrescam-automatizaciones">Ver automatizaciones</a>
-              <a class="button button-secondary" href="assets/docs/radar-obrescam-licitaciones-readme.pdf">README Radar</a>
-              <a class="button button-secondary" href="assets/docs/epi-autodoc-rrhh-manual.pdf">Manual EPI</a>
-            </div>
-          </article>
-        </div>
-      </section>
-
-    </main>
+    <div class="sec-t"><h2>Experiencia</h2><span class="mono">En empresa</span></div>
+    <ul class="rows" id="rows-e"></ul>
+    <a class="next" href="socorrismo.html" data-cur><span class="next-in"><span class="mono">Siguiente</span><span class="next-t">Socorrismo</span></span><svg viewBox="0 0 56 36" fill="none" stroke="currentColor" stroke-width="2"><path d="M0 18h52M36 2l16 16-16 16"/></svg></a>
+    <div class="foot2 mono"><span>© 2026 Fernando Delgado Izquierdo</span><span>Cuenca, España</span></div>
   </div>
-  <script src="script.js"></script>
+</div>
+
+</main>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="app.js"></script>
 </body>
 </html>

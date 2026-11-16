@@ -1,406 +1,79 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Fernando Delgado Izquierdo | Desarrollo Unity VR</title>
-  <meta name="description" content="Perfil de desarrollo de Fernando Delgado Izquierdo: Unity, C#, VR/XR, FishNet y experiencia real en Skyrun, un proyecto multijugador para Meta Quest.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Desarrollo · Fernando Delgado Izquierdo</title>
+<meta name="description" content="Skyrun, juego de realidad virtual multijugador en Unity, y automatizaciones en Python hechas en Obrescam.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="style.css">
 </head>
-<body>
-  <div class="page-shell">
-    <header class="site-header">
-      <a class="brand" href="index.html">
-        <span class="brand-mark">FD</span>
-        <span>Fernando Delgado Izquierdo</span>
-      </a>
-      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Abrir menú">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-      <nav class="main-nav" id="main-nav">
-        <a href="index.html">Inicio</a>
-        <a class="active" href="desarrollo.html">Desarrollo</a>
-        <a href="administracion.html">Administración</a>
-        <a href="socorrismo.html">Socorrismo y monitor</a>
-        <a href="trayectoria.html">Formación y Experiencia</a>
-        <a href="contacto.html">Contacto</a>
-      </nav>
-    </header>
+<body data-page="desarrollo">
+<div id="prog"></div>
+<div id="cur"></div>
+<header class="bar mono" id="bar">
+  <a class="bar-brand" href="index.html" aria-label="Inicio">F.D.</a>
+  <nav class="bar-nav" aria-label="Secciones"><a href="desarrollo.html" aria-current="page">Desarrollo</a><a href="administracion.html">Administración</a><a href="socorrismo.html">Socorrismo</a><a href="trayectoria.html">Trayectoria</a><a href="contacto.html">Contacto</a></nav>
+  <div class="bar-r"><button class="bar-mot mono" id="mot" aria-pressed="false" title="Pausar o reanudar los movimientos continuos">Movimiento: sí</button><span id="pct">00</span><button class="bar-menu mono" id="menu" aria-expanded="false" aria-controls="ov">Índice</button></div>
+</header>
+<nav class="overlay" id="ov" aria-label="Índice"><a href="index.html">Inicio</a><a href="desarrollo.html">Desarrollo</a><a href="administracion.html">Administración</a><a href="socorrismo.html">Socorrismo</a><a href="trayectoria.html">Trayectoria</a><a href="contacto.html">Contacto</a></nav>
+<main>
 
-    <main>
-      <section class="page-hero dev-hero">
-        <div>
-          <p class="eyebrow">Proyecto destacado</p>
-          <h1>Skyrun: experiencia VR multijugador en Unity</h1>
-          <p class="lead">
-            Proyecto desarrollado para uso real en sala, con Meta Quest como clientes y una mesa de control en PC como host de la sesión.
-          </p>
-        </div>
-        <div class="hero-stats compact-stats" aria-label="Datos técnicos del proyecto">
-          <div>
-            <strong>8</strong>
-            <span>jugadores</span>
-          </div>
-          <div>
-            <strong>FishNet</strong>
-            <span>multijugador</span>
-          </div>
-          <div>
-            <strong>Quest</strong>
-            <span>VR standalone</span>
-          </div>
-        </div>
-      </section>
+<div class="vr" id="top">
+  <canvas id="grid" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <div class="chap mono"><span>Desarrollo</span><span>Unity · C# · FishNet</span></div>
+    <h1 class="mega long"><span class="o">Desarrollo</span><span class="f" aria-hidden="true">Desarrollo</span></h1>
+    <p class="page-lead">Unity, C# y realidad virtual. Mi proyecto principal es Skyrun; en Obrescam hice además dos automatizaciones con Python.</p>
 
-      <section class="section">
-        <div class="feature-layout">
-          <article class="feature-copy project-feature">
-            <h2>Qué he construido</h2>
-            <p>
-              Skyrun conecta varias gafas Meta Quest como clientes con un PC host desde el que se coordina la partida, el estado de los jugadores y el flujo general de la experiencia.
-            </p>
-            <div class="tag-row tech-tags">
-              <span>Unity</span>
-              <span>C#</span>
-              <span>FishNet</span>
-              <span>VR/XR</span>
-              <span>Meta Quest</span>
-              <span>PC Host</span>
-              <span>Gameplay</span>
-              <span>Soporte técnico</span>
-            </div>
+    <h2 class="sk">Skyrun</h2>
+    <div class="vr-top">
+      <p class="lead">Juego de realidad virtual multijugador hecho en Unity y pensado para usarse en sala. Varias Meta Quest hacen de clientes y un PC host dirige la partida: mapas, jugadores, vida y puntos.</p>
+      <ul class="spec">
+        <li><b>8</b><span>jugadores sincronizados en la misma sesión</span></li>
+        <li><b>FishNet</b><span>posición, disparos, vida y puntos en red</span></li>
+        <li><b>Quest</b><span>gafas standalone como clientes</span></li>
+        <li><b>Host</b><span>panel Game Master en PC para dirigir la partida</span></li>
+      </ul>
+    </div>
+    <figure class="demo paused" id="demo" data-cur>
+      <video muted loop playsinline preload="metadata" poster="assets/skyrun-demo-poster.jpg"><source src="assets/skyrun-demo-web.mp4" type="video/mp4"></video>
+      <figcaption class="mono"><i></i><span id="demo-t">Demo técnica · Skyrun en 60 s</span></figcaption>
+    </figure>
+    <ol class="flow">
+      <li><span class="mono">Paso 1</span><h3>El host inicia</h3><p>Elige mapa, modo y condiciones desde el panel Game Master.</p></li>
+      <li><span class="mono">Paso 2</span><h3>Las Quest conectan</h3><p>Cada jugador recibe ID, color, punto de aparición y estado inicial.</p></li>
+      <li><span class="mono">Paso 3</span><h3>FishNet sincroniza</h3><p>Jugadores, disparos, vida, puntos y eventos visuales, en tiempo real.</p></li>
+      <li><span class="mono">Paso 4</span><h3>Se juega</h3><p>Movimiento, armas, daño, curación, respawn y ranking.</p></li>
+    </ol>
 
-            <div class="project-list">
-              <article class="project-point">
-                <h3>Arquitectura cliente-host</h3>
-                <p>Varias gafas Meta Quest funcionan como clientes y una mesa de control en PC actúa como host central para gestionar la sesión, mapas, jugadores y estado de partida.</p>
-              </article>
-              <article class="project-point">
-                <h3>Multijugador de hasta 8 jugadores</h3>
-                <p>Sincronización de posición, estado, equipamiento, vida, disparos, puntos y elementos necesarios para que la experiencia compartida sea coherente.</p>
-              </article>
-              <article class="project-point">
-                <h3>Mecánicas implementadas</h3>
-                <p>Movimiento, disparo, respawn, audio, cambios de escena, control de mapas, configuración de equipamiento por escenario y lógica de flujo de juego.</p>
-              </article>
-              <article class="project-point">
-                <h3>Entorno real de uso</h3>
-                <p>El proyecto implica pruebas con usuarios, resolución de incidencias y coordinación entre software, hardware y dinámica de sala.</p>
-              </article>
-            </div>
-          </article>
-
-          <aside class="panel project-side">
-            <h3>Stack técnico</h3>
-            <ul class="detail-list">
-              <li>Unity</li>
-              <li>C#</li>
-              <li>FishNet</li>
-              <li>VR/XR</li>
-              <li>Lógica de gameplay</li>
-              <li>UI básica en Unity</li>
-              <li>Mantenimiento básico de equipos VR</li>
-              <li>Gestión de sesiones con host en PC</li>
-              <li>Despliegue para varias Meta Quest</li>
-            </ul>
-          </aside>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="section-heading">
-          <p class="section-kicker">Host / Game Master</p>
-          <h2>Panel de control para dirigir la partida</h2>
-        </div>
-        <div class="host-layout">
-          <article class="real-host-panel" aria-label="Panel real de control de Skyrun">
-            <div class="gafa-grid">
-              <div class="gafa-card">
-                <span class="status-dot online"></span>
-                <span class="status-dot alert"></span>
-                <span class="gafa-avatar"></span>
-                <strong>GAFA 1</strong>
-                <p>POINT: <b>0</b></p>
-                <p>FPS <b>0</b></p>
-              </div>
-              <div class="gafa-card">
-                <span class="status-dot online"></span>
-                <span class="status-dot alert"></span>
-                <span class="gafa-avatar"></span>
-                <strong>GAFA 2</strong>
-                <p>POINT: <b>0</b></p>
-                <p>FPS <b>0</b></p>
-              </div>
-              <div class="gafa-card">
-                <span class="status-dot online"></span>
-                <span class="status-dot alert"></span>
-                <span class="gafa-avatar"></span>
-                <strong>GAFA 3</strong>
-                <p>POINT: <b>0</b></p>
-                <p>FPS <b>0</b></p>
-              </div>
-              <div class="gafa-card">
-                <span class="status-dot online"></span>
-                <span class="status-dot alert"></span>
-                <span class="gafa-avatar"></span>
-                <strong>GAFA 4</strong>
-                <p>POINT: <b>0</b></p>
-                <p>FPS <b>0</b></p>
-              </div>
-              <div class="gafa-card">
-                <span class="status-dot online"></span>
-                <span class="status-dot alert"></span>
-                <span class="gafa-avatar"></span>
-                <strong>GAFA 5</strong>
-                <p>POINT <b>0</b></p>
-                <p>FPS <b>0</b></p>
-              </div>
-              <div class="gafa-card">
-                <span class="status-dot online"></span>
-                <span class="status-dot alert"></span>
-                <span class="gafa-avatar"></span>
-                <strong>GAFA 6</strong>
-                <p>POINT: <b>0</b></p>
-                <p>FPS <b>0</b></p>
-              </div>
-              <div class="gafa-card">
-                <span class="status-dot online"></span>
-                <span class="status-dot alert"></span>
-                <span class="gafa-avatar"></span>
-                <strong>GAFA 7</strong>
-                <p>POINT: <b>0</b></p>
-                <p>FPS <b>0</b></p>
-              </div>
-              <div class="gafa-card">
-                <span class="status-dot online"></span>
-                <span class="status-dot alert"></span>
-                <span class="gafa-avatar"></span>
-                <strong>GAFA 8</strong>
-                <p>POINT: <b>0</b></p>
-                <p>FPS <b>0</b></p>
-              </div>
-              <div class="gafa-card">
-                <span class="status-dot online"></span>
-                <span class="status-dot alert"></span>
-                <span class="gafa-avatar"></span>
-                <strong>GAFA 9</strong>
-                <p>POINT: <b>0</b></p>
-                <p>FPS <b>0</b></p>
-              </div>
-            </div>
-            <div class="host-control-row">
-              <aside class="host-game-list">
-                <button>SkyRun</button>
-                <button>SkyRun halloween</button>
-              </aside>
-              <div class="host-control-stack">
-                <section class="yellow-control">
-                  <h3>ENEMIGOS</h3>
-                  <div class="control-line">
-                    <span class="fake-select">Cofre</span>
-                    <span class="fake-button">Añadir</span>
-                  </div>
-                  <span class="wide-button">Quitar enemigos</span>
-                  <div class="small-controls">
-                    <span class="fake-check"></span>
-                    <span>Automatico</span>
-                    <b>C</b>
-                    <span class="fake-input">40</span>
-                    <b>t</b>
-                    <span class="fake-input">5</span>
-                  </div>
-                  <p>cantidad : <b>0</b></p>
-                </section>
-                <section class="yellow-control">
-                  <h3>POWER UP</h3>
-                  <div class="control-line">
-                    <span class="fake-select">RedPotion</span>
-                    <span class="fake-button">Añadir</span>
-                  </div>
-                  <span class="wide-button">Quitar enemigos</span>
-                  <div class="small-controls">
-                    <span class="fake-check"></span>
-                    <span>Automatico</span>
-                    <b>t</b>
-                    <span class="fake-input">5</span>
-                    <b>C</b>
-                    <span class="fake-input">20</span>
-                  </div>
-                  <p>cantidad : <b>0</b></p>
-                </section>
-              </div>
-            </div>
-          </article>
-
-          <article class="panel host-copy">
-            <h3>Qué controla el host</h3>
-            <ul class="detail-list compact-list">
-              <li>Cambio de juego, mapa y estado de partida.</li>
-              <li>Jugadores conectados, color, ID, vida y puntos.</li>
-              <li>Respawn, reinicio, eventos rápidos y power ups.</li>
-              <li>Ranking y actualización del panel durante la sesión.</li>
-            </ul>
-          </article>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="section-heading">
-          <p class="section-kicker">Arquitectura</p>
-          <h2>Cómo fluye una partida</h2>
-        </div>
-        <div class="system-flow">
-          <article class="flow-node">
-            <span>01</span>
-            <h3>Host inicia partida</h3>
-            <p>Selecciona mapa, modo y condiciones desde el panel Game Master.</p>
-          </article>
-          <article class="flow-node">
-            <span>02</span>
-            <h3>Quest se conectan</h3>
-            <p>Se asigna ID, color, spawn y estado inicial a cada jugador.</p>
-          </article>
-          <article class="flow-node">
-            <span>03</span>
-            <h3>FishNet sincroniza</h3>
-            <p>Jugadores, disparos, vida, puntos, RPCs visuales y conexión.</p>
-          </article>
-          <article class="flow-node">
-            <span>04</span>
-            <h3>Gameplay en VR</h3>
-            <p>Movimiento, armas, daño, curación, muerte, respawn y ranking.</p>
-          </article>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="section-heading">
-          <p class="section-kicker">Demo técnica</p>
-          <h2>Skyrun en 60 segundos</h2>
-        </div>
-        <div class="video-showcase">
-          <video controls preload="metadata" poster="assets/skyrun-demo-poster.jpg">
-            <source src="assets/skyrun-demo-web.mp4" type="video/mp4">
-            Tu navegador no puede reproducir este vídeo.
-          </video>
-        </div>
-      </section>
-
-      <section class="section" id="obrescam-automatizaciones">
-        <div class="section-heading">
-          <p class="section-kicker">Python + Codex en empresa</p>
-          <h2>Automatizaciones desarrolladas durante las prácticas en Obrescam</h2>
-        </div>
-        <div class="feature-layout">
-          <article class="feature-copy project-feature">
-            <h3>Radar Obrescam de Licitaciones</h3>
-            <p>
-              Proyecto para automatizar la primera fase del estudio de licitaciones públicas de obras:
-              búsqueda en la Plataforma de Contratación del Sector Público, filtros de Cuenca, creación
-              de cola de expedientes, comparación con carpetas locales y descarga ordenada de pliegos.
-            </p>
-            <p>
-              La parte mecánica se resolvió con Python y Playwright. Codex se incorporó como apoyo para
-              diseñar el flujo, depurar problemas del entorno local, mejorar instrucciones operativas y preparar
-              la siguiente fase de análisis documental de mediciones y presupuestos.
-            </p>
-            <div class="tag-row tech-tags">
-              <span>Python</span>
-              <span>Playwright</span>
-              <span>BeautifulSoup</span>
-              <span>IA (Codex/Claude)</span>
-              <span>Automatización web</span>
-              <span>Gestión documental</span>
-            </div>
-            <div class="cta-row">
-              <a class="button button-primary" href="assets/docs/radar-obrescam-licitaciones-readme.pdf">README Radar de Licitaciones</a>
-            </div>
-          </article>
-          <aside class="panel project-side">
-            <h3>EPI AutoDoc RRHH</h3>
-            <p>
-              Automatización independiente para Recursos Humanos: genera documentos de entrega de EPIs
-              a partir de una plantilla Word, pide los datos del trabajador por consola, sustituye marcadores
-              y prepara el documento para impresión.
-            </p>
-            <ul class="detail-list compact-list">
-              <li>Python y python-docx.</li>
-              <li>Plantillas Word corporativas.</li>
-              <li>Validación de campos y fecha.</li>
-              <li>Automatización administrativa real.</li>
-            </ul>
-            <div class="cta-row">
-              <a class="button button-primary" href="assets/docs/epi-autodoc-rrhh-manual.pdf">Manual EPI AutoDoc RRHH</a>
-              <a class="button button-secondary" href="administracion.html">Contexto administrativo</a>
-            </div>
-          </aside>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="section-heading">
-          <p class="section-kicker">Formación en desarrollo</p>
-          <h2>Certificaciones y cursos técnicos</h2>
-        </div>
-        <div class="timeline">
-          <article class="timeline-item panel">
-            <div class="timeline-top">
-              <div class="timeline-org">
-                <img class="org-logo" src="assets/logos/iworking.png" alt="Logo de Iworking">
-                <h3>Iworking</h3>
-              </div>
-              <span>Julio 2023</span>
-            </div>
-            <p>Desarrollo de aplicaciones multimedia: programación en C#, modelado 3D, Unity y primeros pasos en realidad virtual y aumentada.</p>
-          </article>
-          <article class="timeline-item panel">
-            <div class="timeline-top">
-              <div class="timeline-org">
-                <img class="org-logo" src="assets/logos/ceoe.svg" alt="Logo de CEOE">
-                <h3>CEOE</h3>
-              </div>
-              <span>2025</span>
-            </div>
-            <p>Análisis de datos con Power BI como herramienta de visualización y apoyo en proyectos.</p>
-          </article>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="section-heading">
-          <p class="section-kicker">Experiencia relacionada</p>
-          <h2>Desarrollo y soporte técnico</h2>
-        </div>
-        <div class="timeline">
-          <article class="timeline-item panel">
-            <div class="timeline-top">
-              <div class="timeline-org">
-                <img class="org-logo" src="assets/logos/virtual-cuenca.png" alt="Logo de Virtual Cuenca">
-                <h3>Virtual Cuenca</h3>
-              </div>
-              <span>Febrero 2025 - Junio 2026</span>
-            </div>
-            <p>Monitor de realidad virtual y responsable del desarrollo del juego y de la experiencia usada por la empresa, además del apoyo técnico en sala y la resolución de incidencias durante las sesiones.</p>
-          </article>
-          <article class="timeline-item panel">
-            <div class="timeline-top">
-              <div class="timeline-org">
-                <img class="org-logo" src="assets/logos/iworking.png" alt="Logo de Iworking">
-                <h3>Iworking</h3>
-              </div>
-              <span>Julio 2023 - Agosto 2023</span>
-            </div>
-            <p>Prácticas de programación con desarrollo de realidad virtual y apoyo en tareas técnicas, que sirvieron como base para seguir creciendo en Unity y experiencias interactivas.</p>
-          </article>
-        </div>
-      </section>
-    </main>
+    <div class="auto-h"><h3>Python en la empresa</h3><p>Dos automatizaciones que hice durante las prácticas en Obrescam, con Codex como apoyo.</p></div>
+    <div class="auto">
+      <article>
+        <span class="mono" style="color:var(--signal)">Licitaciones públicas</span>
+        <h4>Radar Obrescam</h4>
+        <p>Automatiza la primera fase del estudio de licitaciones públicas de obras: busca en la Plataforma de Contratación, filtra por Cuenca, crea la cola de expedientes, la compara con las carpetas locales y descarga los pliegos de forma ordenada.</p>
+        <div class="tags mono"><span>Python</span><span>Playwright</span><span>BeautifulSoup</span></div>
+        <a class="lnk mono" href="assets/docs/radar-obrescam-licitaciones-readme.pdf" target="_blank" rel="noopener" data-cur>Leer el README</a>
+      </article>
+      <article>
+        <span class="mono" style="color:var(--signal)">Recursos humanos</span>
+        <h4>EPI AutoDoc RRHH</h4>
+        <p>Genera los documentos de entrega de EPIs a partir de una plantilla Word: pide los datos del trabajador por consola, valida campos y fecha, sustituye los marcadores y deja el documento listo para imprimir.</p>
+        <div class="tags mono"><span>Python</span><span>python-docx</span><span>Plantillas Word</span></div>
+        <a class="lnk mono" href="assets/docs/epi-autodoc-rrhh-manual.pdf" target="_blank" rel="noopener" data-cur>Leer el manual</a>
+      </article>
+    </div>
+    <a class="next" href="administracion.html" data-cur><span class="next-in"><span class="mono">Siguiente</span><span class="next-t">Administración</span></span><svg viewBox="0 0 56 36" fill="none" stroke="currentColor" stroke-width="2"><path d="M0 18h52M36 2l16 16-16 16"/></svg></a>
+    <div class="foot2 mono"><span>© 2026 Fernando Delgado Izquierdo</span><span>Cuenca, España</span></div>
   </div>
-  <script src="script.js"></script>
+</div>
+
+</main>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="app.js"></script>
 </body>
 </html>

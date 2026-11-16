@@ -1,362 +1,45 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Fernando Delgado Izquierdo | Formación y Experiencia</title>
-  <meta name="description" content="Línea de tiempo: formación y experiencia profesional de Fernando Delgado Izquierdo.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-  <style>
-    .timeline-wrapper {
-      padding: 60px 40px;
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-    }
-
-    .timeline-svg {
-      display: block;
-    }
-
-    .timeline-axis-label {
-      font-size: 13px;
-      fill: var(--muted);
-    }
-
-    @media (max-width: 720px) {
-      .timeline-wrapper {
-        padding: 40px 20px;
-      }
-    }
-
-    .tooltip {
-      position: fixed;
-      background: var(--surface-strong);
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      padding: 12px 16px;
-      font-size: 0.85rem;
-      z-index: 1000;
-      display: none;
-      pointer-events: none;
-      box-shadow: var(--shadow);
-      max-width: 240px;
-    }
-
-    .tooltip.visible {
-      display: block;
-    }
-
-    .tooltip-title {
-      font-weight: 600;
-      color: var(--text);
-      margin: 4px 0;
-    }
-
-    .tooltip-org {
-      color: var(--muted);
-      font-size: 0.8rem;
-      margin: 2px 0;
-    }
-
-    .tooltip-desc {
-      color: var(--muted);
-      font-size: 0.8rem;
-      line-height: 1.4;
-      margin-top: 6px;
-    }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Trayectoria · Fernando Delgado Izquierdo</title>
+<meta name="description" content="Formación y experiencia de Fernando Delgado Izquierdo por años, de 2023 a 2026.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="style.css">
 </head>
-<body>
-  <div class="page-shell">
-    <header class="site-header">
-      <a class="brand" href="index.html">
-        <span class="brand-mark">FD</span>
-        <span>Fernando Delgado Izquierdo</span>
-      </a>
-      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Abrir menú">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-      <nav class="main-nav" id="main-nav">
-        <a href="index.html">Inicio</a>
-        <a href="desarrollo.html">Desarrollo</a>
-        <a href="administracion.html">Administración</a>
-        <a href="socorrismo.html">Socorrismo y monitor</a>
-        <a class="active" href="trayectoria.html">Formación y Experiencia</a>
-        <a href="contacto.html">Contacto</a>
-      </nav>
-    </header>
+<body data-page="trayectoria">
+<div id="prog"></div>
+<div id="cur"></div>
+<header class="bar mono" id="bar">
+  <a class="bar-brand" href="index.html" aria-label="Inicio">F.D.</a>
+  <nav class="bar-nav" aria-label="Secciones"><a href="desarrollo.html">Desarrollo</a><a href="administracion.html">Administración</a><a href="socorrismo.html">Socorrismo</a><a href="trayectoria.html" aria-current="page">Trayectoria</a><a href="contacto.html">Contacto</a></nav>
+  <div class="bar-r"><button class="bar-mot mono" id="mot" aria-pressed="false" title="Pausar o reanudar los movimientos continuos">Movimiento: sí</button><span id="pct">00</span><button class="bar-menu mono" id="menu" aria-expanded="false" aria-controls="ov">Índice</button></div>
+</header>
+<nav class="overlay" id="ov" aria-label="Índice"><a href="index.html">Inicio</a><a href="desarrollo.html">Desarrollo</a><a href="administracion.html">Administración</a><a href="socorrismo.html">Socorrismo</a><a href="trayectoria.html">Trayectoria</a><a href="contacto.html">Contacto</a></nav>
+<main>
 
-    <main>
-      <section class="page-hero">
-        <p class="eyebrow">Formación y experiencia</p>
-        <h1>Mi trayectoria</h1>
-        <p class="lead">
-          Formación y experiencia profesional desde 2022, mostrando cómo la educación y el trabajo se entrelazan en mi desarrollo.
-        </p>
-      </section>
-
-      <section class="section">
-        <div class="timeline-wrapper">
-          <svg class="timeline-svg" id="timeline"></svg>
-          <div class="tooltip" id="tooltip">
-            <div class="tooltip-badge" id="tooltip-badge"></div>
-            <div class="tooltip-title" id="tooltip-title"></div>
-            <div class="tooltip-org" id="tooltip-org"></div>
-            <div class="tooltip-desc" id="tooltip-desc"></div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="section-heading">
-          <p class="section-kicker">Detalle</p>
-          <h2>Formación y experiencia desglosadas</h2>
-        </div>
-        <div class="card-grid two-up" id="trayectoria-cards"></div>
-      </section>
-    </main>
+<div class="tray" id="top">
+  <div class="wrap tray-h">
+    <div class="chap mono"><span>Trayectoria</span><span>2023 — 2026</span></div>
+    <h1 class="mega long"><span class="o">Trayectoria</span><span class="f" aria-hidden="true">Trayectoria</span></h1>
+    <div class="tray-intro">
+      <p class="page-lead" style="margin-top:0">Formación y experiencia por años, de 2023 a 2026. Sigue bajando para recorrerla.</p>
+      <div class="legend mono"><span class="lg-e"><i></i>Experiencia</span><span class="lg-f"><i></i>Formación</span></div>
+    </div>
   </div>
+  <div class="hz-wrap" id="hz-wrap"><div class="hz" id="hz"><div class="hz-track" id="hz-track"></div><div class="hz-prog" id="hz-prog"><i></i></div></div></div>
+  <div class="wrap">
+    <a class="next" href="contacto.html" data-cur><span class="next-in"><span class="mono">Siguiente</span><span class="next-t">Contacto</span></span><svg viewBox="0 0 56 36" fill="none" stroke="currentColor" stroke-width="2"><path d="M0 18h52M36 2l16 16-16 16"/></svg></a>
+    <div class="foot2 mono"><span>© 2026 Fernando Delgado Izquierdo</span><span>Cuenca, España</span></div>
+  </div>
+</div>
 
-  <script src="script.js"></script>
-  <script>
-    const events = [
-      { start: "2022-09", end: "2024-06", type: "formacion", title: "Grado Medio Gestión Administrativa", org: "IES Pedro Mercedes", desc: "Formación reglada en procesos administrativos" },
-      { start: "2023-04", end: "2023-07", type: "formacion", title: "Desarrollo videojuegos", org: "Iworking", desc: "Programación en C#, modelado 3D y Unity" },
-      { start: "2023-07", end: "2023-08", type: "experiencia", title: "Prácticas VR", org: "Iworking", desc: "Apoyo técnico en desarrollo de realidad virtual" },
-      { start: "2024-04", end: "2024-06", type: "experiencia", title: "Prácticas administrativas", org: "MRW", desc: "Atención, oficina, rutas y herramientas digitales" },
-      { start: "2025-04", end: "2025-07", type: "formacion", title: "Dinamización tiempo libre", org: "Iworking", desc: "Procesos grupales y organización de actividades" },
-      { start: "2024-06", end: "2024-07", type: "experiencia", title: "Prácticas de monitor", org: "Centro Ortega y Gasset", desc: "Supervisión, seguridad y dinamización" },
-      { start: "2024-09", end: "2026-07", type: "formacion", title: "Administración y Finanzas", org: "IES Pedro Mercedes", desc: "Grado superior en gestión empresarial" },
-      { start: "2026-09", end: "2026-09", type: "formacion", title: "Grado Relaciones Laborales", org: "UCLM Cuenca", desc: "En curso: relaciones laborales y RR. HH." },
-      { start: "2024-10", end: "2024-11", type: "formacion", title: "Análisis Power BI", org: "CEOE", desc: "Análisis de datos y visualización" },
-      { start: "2024-11", end: "2024-11", type: "formacion", title: "Socorrista acuático", org: "Global Encesap", desc: "Rescate, salvamento y protocolos de seguridad" },
-      { start: "2025-02", end: "2026-06", type: "experiencia", title: "Monitor VR y desarrollador", org: "Virtual Cuenca", desc: "Monitor de VR y desarrollo del juego" },
-      { start: "2025-06", end: "2025-09", type: "experiencia", title: "Socorrista acuático", org: "Clima Cuenca SLU", desc: "Vigilancia, atención y control de material" },
-      { start: "2026-04", end: "2026-06", type: "experiencia", title: "Prácticas administrativas", org: "Obrescam", desc: "Gestión y seguimiento documental" },
-      { start: "2026-06", end: "2026-09", type: "experiencia", title: "Trabajador administrativo", org: "Obrescam", desc: "Administrativo contratado" },
-      { start: "2026-06", end: "2026-09", type: "experiencia", title: "Socorrista acuático", org: "Clima Cuenca SLU", desc: "Socorrista de temporada" },
-      { start: "2026-10", end: "2026-10", type: "formacion", title: "Competencias Digitales DigComp 2.2 — Nivel C2", org: "UCLM", desc: "Nivel máximo del marco europeo DigComp: información, comunicación, creación digital, seguridad y resolución de problemas" },
-      { start: "2026-07", end: "2026-10", type: "formacion", title: "Certificaciones Anthropic Academy", org: "Anthropic Academy", desc: "17 certificaciones en IA generativa, herramientas Claude y AI Fluency.", list: ["AI Fluency: AI Capabilities & Limitations", "AI Fluency: Framework & Foundations", "AI Fluency For Students", "AI Fluency For Educators", "AI Fluency For Nonprofits", "AI Fluency For K-12 Educators", "AI Fluency For Small Business", "AI Fluency For Builders", "AI Fluency For Creative Work", "Teaching The AI Fluency Framework", "Claude 101", "Claude Platform", "Introduction to Claude Cowork", "Introduction to Subagents", "Claude Code in Action", "Introduction to Agent Skills", "Introduction to Model Context Protocol"] }
-    ];
-
-    function dateToMonths(dateStr) {
-      const [year, month] = dateStr.split("-").map(Number);
-      return year * 12 + month;
-    }
-
-    const minMonth = Math.min(...events.map(e => dateToMonths(e.start)));
-    const maxMonth = Math.max(...events.map(e => dateToMonths(e.end)));
-    const timelineRange = maxMonth - minMonth + 1;
-
-    function getMonthPos(dateStr) {
-      return dateToMonths(dateStr) - minMonth;
-    }
-
-    // Asignar filas por solapamiento
-    function assignRows(events) {
-      const rows = [];
-      events.forEach(event => {
-        const eventStart = getMonthPos(event.start);
-        const eventEnd = getMonthPos(event.end);
-
-        let placed = false;
-        for (let row of rows) {
-          let canPlace = true;
-          for (let existing of row) {
-            const existStart = getMonthPos(existing.start);
-            const existEnd = getMonthPos(existing.end);
-            if (!(eventEnd < existStart || eventStart > existEnd)) {
-              canPlace = false;
-              break;
-            }
-          }
-          if (canPlace) {
-            row.push(event);
-            placed = true;
-            break;
-          }
-        }
-        if (!placed) {
-          rows.push([event]);
-        }
-      });
-      return rows;
-    }
-
-    const rows = assignRows(events);
-    const svg = document.getElementById("timeline");
-    const rowHeight = 60;
-    const padding = 60;
-    const contentWidth = 1000;
-
-    const totalHeight = padding * 2 + rows.length * rowHeight;
-    svg.setAttribute("viewBox", `0 0 ${contentWidth + 80} ${totalHeight}`);
-    svg.setAttribute("width", contentWidth + 80);
-    svg.setAttribute("height", totalHeight);
-
-    // Eje de años para dar contexto temporal, sobre todo en scroll horizontal en móvil
-    const firstAxisYear = Math.ceil((minMonth - 1) / 12);
-    const lastAxisYear = Math.floor((maxMonth - 1) / 12);
-    for (let year = firstAxisYear; year <= lastAxisYear; year++) {
-      const monthPos = year * 12 + 1 - minMonth;
-      const x = 40 + (monthPos / timelineRange) * contentWidth;
-
-      const tick = document.createElementNS("http://www.w3.org/2000/svg", "line");
-      tick.setAttribute("x1", x);
-      tick.setAttribute("y1", padding - 28);
-      tick.setAttribute("x2", x);
-      tick.setAttribute("y2", totalHeight - 10);
-      tick.setAttribute("stroke", "var(--line)");
-      tick.setAttribute("stroke-width", "1");
-      svg.appendChild(tick);
-
-      const label = document.createElementNS("http://www.w3.org/2000/svg", "text");
-      label.setAttribute("x", x);
-      label.setAttribute("y", padding - 36);
-      label.setAttribute("text-anchor", "middle");
-      label.setAttribute("class", "timeline-axis-label");
-      label.textContent = year;
-      svg.appendChild(label);
-    }
-
-    let activeRect = null;
-
-    function positionTooltip(tooltip, clientX, clientY) {
-      const margin = 12;
-      const rect = tooltip.getBoundingClientRect();
-
-      let left = clientX + 10;
-      if (left + rect.width + margin > window.innerWidth) {
-        left = clientX - rect.width - 10;
-      }
-      left = Math.max(margin, Math.min(left, window.innerWidth - rect.width - margin));
-
-      let top = clientY + 10;
-      if (top + rect.height + margin > window.innerHeight) {
-        top = clientY - rect.height - 10;
-      }
-      top = Math.max(margin, top);
-
-      tooltip.style.left = left + "px";
-      tooltip.style.top = top + "px";
-    }
-
-    document.addEventListener("click", () => {
-      document.getElementById("tooltip").classList.remove("visible");
-      activeRect = null;
-    });
-
-    // Dibujar barras
-    rows.forEach((row, rowIdx) => {
-      const yCenter = padding + rowIdx * rowHeight;
-
-      row.forEach(event => {
-        const startPos = getMonthPos(event.start);
-        const endPos = getMonthPos(event.end);
-        const duration = endPos - startPos + 1;
-
-        const x1 = 40 + (startPos / timelineRange) * contentWidth;
-        const x2 = 40 + ((startPos + duration) / timelineRange) * contentWidth;
-
-        const color = event.type === "formacion" ? "#9ba7ff" : "#3885d6";
-
-        // Barra
-        const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
-        line.setAttribute("x1", x1);
-        line.setAttribute("y1", yCenter);
-        line.setAttribute("x2", x2);
-        line.setAttribute("y2", yCenter);
-        line.setAttribute("stroke", color);
-        line.setAttribute("stroke-width", "10");
-        line.setAttribute("stroke-linecap", "round");
-        svg.appendChild(line);
-
-        // Área interactiva
-        const rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
-        rect.setAttribute("x", Math.min(x1, x2) - 5);
-        rect.setAttribute("y", yCenter - 15);
-        rect.setAttribute("width", Math.abs(x2 - x1) + 10);
-        rect.setAttribute("height", 30);
-        rect.setAttribute("fill", "transparent");
-        rect.setAttribute("cursor", "pointer");
-
-        rect.addEventListener("click", (e) => {
-          e.stopPropagation();
-          const tooltip = document.getElementById("tooltip");
-
-          if (activeRect === rect && tooltip.classList.contains("visible")) {
-            tooltip.classList.remove("visible");
-            activeRect = null;
-            return;
-          }
-
-          activeRect = rect;
-          document.getElementById("tooltip-badge").textContent = event.type === "formacion" ? "Formación" : "Experiencia";
-          document.getElementById("tooltip-badge").className = `tooltip-badge ${event.type}`;
-          document.getElementById("tooltip-title").textContent = event.title;
-          document.getElementById("tooltip-org").textContent = event.org;
-          document.getElementById("tooltip-desc").textContent = event.desc;
-          tooltip.classList.add("visible");
-          positionTooltip(tooltip, e.clientX, e.clientY);
-        });
-
-        svg.appendChild(rect);
-      });
-    });
-
-    // Tarjetas de detalle
-    const orgLogos = {
-      "IES Pedro Mercedes": "assets/logos/pedro-mercedes.png",
-      "Iworking": "assets/logos/iworking.png",
-      "MRW": "assets/logos/mrw.webp",
-      "Centro Ortega y Gasset": "assets/logos/ortega-y-gasset.png",
-      "Global Encesap": "assets/logos/global-encesap.jpg",
-      "Virtual Cuenca": "assets/logos/virtual-cuenca.png",
-      "Clima Cuenca SLU": "assets/logos/clima-cuenca.jpg",
-      "Obrescam": "assets/logos/obrescam.png",
-      "CEOE": "assets/logos/ceoe.svg",
-      "UCLM": "assets/logos/uclm.svg",
-      "Anthropic Academy": "assets/logos/anthropic.svg"
-    };
-
-    const monthNames = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"];
-
-    function formatMonth(dateStr) {
-      const [year, month] = dateStr.split("-").map(Number);
-      const name = monthNames[month - 1];
-      return `${name.charAt(0).toUpperCase()}${name.slice(1)} ${year}`;
-    }
-
-    function formatRange(event) {
-      return event.start === event.end ? formatMonth(event.start) : `${formatMonth(event.start)} - ${formatMonth(event.end)}`;
-    }
-
-    const cardsContainer = document.getElementById("trayectoria-cards");
-    cardsContainer.innerHTML = events.map(event => {
-      const logo = orgLogos[event.org];
-      const orgBlock = logo
-        ? `<img class="org-logo" src="${logo}" alt="Logo de ${event.org}"><p style="font-size: 0.9rem; color: var(--muted); margin: 0;">${event.org}</p>`
-        : `<p style="font-size: 0.9rem; color: var(--muted); margin: 0;">${event.org}</p>`;
-      const desc = event.desc.endsWith(".") ? event.desc : `${event.desc}.`;
-      const listHtml = event.list
-        ? `<ul style="margin: 8px 0 0; padding-left: 18px; color: var(--muted); font-size: 0.85rem; line-height: 1.7;">${event.list.map(item => `<li>${item}</li>`).join("")}</ul>`
-        : "";
-      return `
-        <article class="panel">
-          <span class="tooltip-badge ${event.type}">${event.type === "formacion" ? "Formación" : "Experiencia"}</span>
-          <h3>${event.title}</h3>
-          <div class="timeline-org" style="margin: 8px 0;">${orgBlock}</div>
-          <p>${desc}</p>
-          ${listHtml}
-          <p style="font-size: 0.9rem; color: var(--accent); font-weight: 600; margin-top: 8px;"><strong>${formatRange(event)}</strong></p>
-        </article>
-      `;
-    }).join("");
-  </script>
+</main>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="app.js"></script>
 </body>
 </html>
