@@ -302,9 +302,11 @@ body[data-page="contacto"],html:has(body[data-page="contacto"]){background:var(-
 
 /* socorrismo: el medidor ocupa todo el alto visible y la boya te sigue */
 .sos{overflow:clip}
-.sos-l{display:flex;flex-direction:column;min-height:calc(100svh - 110px)}
-.sos-l .gauge{flex:1;height:auto;min-height:140px;margin:clamp(20px,4vh,44px) 0 28px}
-@media (max-height:700px) and (min-width:861px){.sos .lead{font-size:clamp(1rem,2.7vh,1.2rem);margin-top:16px}.sos .mega.mid{font-size:clamp(3rem,14vh,6.5rem)}}
+.gauge-fix{position:fixed;z-index:60;left:max(10px,calc(var(--gut) / 2 - 9px));top:92px;bottom:22px;width:18px;opacity:0;pointer-events:none;transition:opacity .3s}
+.gauge-fix.on{opacity:1}
+.gauge-fix .g-rail{position:absolute;left:8px;top:0;bottom:0;width:2px;height:auto}
+.g-lab{position:absolute;left:28px;top:50%;transform:translateY(-50%);white-space:nowrap;color:var(--foam);font-size:.8rem}
+@media (max-width:860px){.gauge-fix{display:none}}
 
 /* trayectoria: el bloque horizontal cabe siempre en la pantalla */
 .hz-wrap{position:relative}

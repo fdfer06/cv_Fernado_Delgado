@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap">
-<link rel="stylesheet" href="style.css?v=3">
+<link rel="stylesheet" href="style.css?v=4">
 </head>
 <body data-page="socorrismo">
 <div id="prog"></div>
@@ -29,10 +29,6 @@
       <div class="sos-l">
         <h1 class="mega mid bob" id="h-vigilar" data-word="Socorrismo" aria-label="Socorrismo">Socorrismo</h1>
         <p class="lead">Trabajo como socorrista acuático en Clima Cuenca y fui monitor de realidad virtual en Virtual Cuenca. Tengo la titulación de socorrista, primeros auxilios y coordinación de servicios acuáticos.</p>
-        <div class="gauge" aria-hidden="true">
-          <div class="g-rail"><div class="g-buoy" id="buoy"></div></div>
-          <div class="g-txt"><span class="mono">Profundidad</span><b id="depth">0,0 m</b><span class="mono">&nbsp;</span></div>
-        </div>
       </div>
       <div class="sos-r">
         <h2 class="grp">Experiencia</h2>
@@ -45,11 +41,12 @@
     <a class="next" href="trayectoria.html" data-cur><span class="next-in"><span class="mono">Siguiente</span><span class="next-t">Trayectoria</span></span><svg viewBox="0 0 56 36" fill="none" stroke="currentColor" stroke-width="2"><path d="M0 18h52M36 2l16 16-16 16"/></svg></a>
     <div class="foot2 mono"><span>© 2026 Fernando Delgado Izquierdo</span><span>Cuenca, España</span></div>
   </div>
+  <div class="gauge-fix" id="gauge" aria-hidden="true"><div class="g-rail"><div class="g-buoy" id="buoy"><span class="g-lab mono" id="depth">0,0 m</span></div></div></div>
 </div>
 
 </main>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script src="app.js?v=2"></script>
+<script src="app.js?v=3"></script>
 </body>
 </html>

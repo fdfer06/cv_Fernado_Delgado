@@ -327,12 +327,14 @@ if ($("#grid")) ScrollTrigger.create({ start: 0, end: "max", onUpdate: function 
 if ($("#waves")) ScrollTrigger.create({ start: 0, end: "max", onUpdate: function (s) { waveAmp = Math.min(2.4, Math.max(waveAmp, 1 + Math.abs(s.getVelocity()) / 1400)); } });
 
 /* medidor de profundidad */
-if ($("#depth")) {
-  var depth = $("#depth"), buoy = $("#buoy");
-  ScrollTrigger.create({ trigger: ".sos-grid", start: "top 70%", end: "bottom 60%", onUpdate: function (s) {
-    depth.textContent = (s.progress * 3).toFixed(1).replace(".", ",") + " m";
-    buoy.style.top = (s.progress * 100) + "%";
-  } });
+if ($("#gauge")) {
+  var gauge = $("#gauge"), depth = $("#depth"), buoy = $("#buoy");
+  ScrollTrigger.create({ trigger: ".sos-grid", start: "top 45%", end: "bottom bottom",
+    onToggle: function (s) { gauge.classList.toggle("on", s.isActive); },
+    onUpdate: function (s) {
+      depth.textContent = (s.progress * 3).toFixed(1).replace(".", ",") + " m";
+      buoy.style.top = (s.progress * 100) + "%";
+    } });
 }
 
 /* trayectoria: horizontal en escritorio, vertical en móvil */
