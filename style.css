@@ -304,6 +304,15 @@ body[data-page="contacto"],html:has(body[data-page="contacto"]){background:var(-
 .sos{overflow:clip}
 /* con el círculo activo se oculta la flecha del ratón */
 html.has-cur,html.has-cur *{cursor:none!important}
+#cur{transition:width .25s var(--ease-out),height .25s var(--ease-out),margin .25s var(--ease-out),background .25s,border-color .2s,opacity .3s}
+#cur.t-ink{border-color:var(--ink)}
+#cur.t-ink.big{background:rgba(11,11,12,.14)}
+#cur.t-paper{border-color:var(--paper)}
+#cur.t-paper.big{background:rgba(236,235,229,.16)}
+/* el borde de foco de teclado también se ve sobre el naranja */
+body[data-page="contacto"] :focus-visible{outline-color:var(--ink)}
+.btn-p:focus-visible{outline-color:var(--paper)}
+.row:focus-within{outline:0}
 .gauge-fix{position:fixed;z-index:60;left:max(10px,calc(var(--gut) / 2 - 9px));top:92px;bottom:22px;width:18px;opacity:0;pointer-events:none;transition:opacity .3s}
 .gauge-fix.on{opacity:1}
 .gauge-fix .g-rail{position:absolute;left:8px;top:0;bottom:0;width:2px;height:auto}
