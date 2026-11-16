@@ -293,11 +293,40 @@ ScrollTrigger.create({ start: 0, end: "max", onUpdate: function (s) {
 var cur = $("#cur");
 if (cur && matchMedia("(hover:hover) and (pointer:fine)").matches) {
   var qx = gsap.quickTo(cur, "x", { duration: 0.15, ease: "power3" }), qy = gsap.quickTo(cur, "y", { duration: 0.15, ease: "power3" });
+  var last = null;
+  /* la posición viaja entre páginas: el círculo aparece al cargar aunque el ratón esté quieto */
+  try {
+    var saved = JSON.parse(sessionStorage.getItem("fd-cur") || "null");
+    if (saved && isFinite(saved.x) && isFinite(saved.y)) {
+      last = saved;
+      gsap.set(cur, { x: saved.x, y: saved.y });
+      document.documentElement.classList.add("has-cur");
+      cur.classList.add("on");
+    }
+  } catch (e) {}
+  var persist = function () { try { if (last) sessionStorage.setItem("fd-cur", JSON.stringify(last)); } catch (e) {} };
   window.addEventListener("pointermove", function (e) {
     if (e.pointerType === "touch") return;
+    last = { x: e.clientX, y: e.clientY };
     document.documentElement.classList.add("has-cur");
     cur.classList.add("on"); qx(e.clientX); qy(e.clientY);
   });
+  document.addEventListener("pointerdown", persist);
+  window.addEventListener("pagehide", persist);
+  /* el círculo cambia de color según la superficie: naranja, tinta o papel */
+  var onOrangePage = document.body.getAttribute("data-page") === "contacto";
+  var setTone = function (el) {
+    var tone = "";
+    if (el && el.closest) {
+      if (el.closest(".cta-cv,.cp")) tone = "paper";
+      else if (el.closest(".row,.btn-p,.end")) tone = "ink";
+    }
+    if (!tone && onOrangePage) tone = "ink";
+    cur.classList.toggle("t-ink", tone === "ink");
+    cur.classList.toggle("t-paper", tone === "paper");
+  };
+  setTone(null);
+  document.addEventListener("pointerover", function (e) { setTone(e.target); });
   document.addEventListener("pointerover", function (e) { cur.classList.toggle("big", !!(e.target.closest && e.target.closest("[data-cur],a,button"))); });
   document.addEventListener("pointerleave", function () { cur.classList.remove("on"); });
 }
